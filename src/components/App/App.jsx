@@ -6,6 +6,9 @@ import {
   Switch,
 } from 'react-router-dom';
 
+require("dotenv").config();
+
+
 import { useDispatch } from 'react-redux';
 
 import Nav from '../Nav/Nav';
@@ -19,6 +22,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Map from '../GoogleMap/GoogleMap';
+
 
 import './App.css';
 
@@ -101,6 +106,16 @@ function App() {
           >
             <LandingPage />
           </ProtectedRoute>
+
+          <Route
+            // with authRedirect:
+            // - if logged in, redirects to "/user"
+            // - else shows LandingPage at "/home"
+            exact
+            path="/map"
+          >
+            <Map />
+          </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
