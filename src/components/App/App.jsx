@@ -23,6 +23,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Map from '../GoogleMap/GoogleMap';
+import JobBoard from '../JobBoard/JobBoard';
 
 
 import './App.css';
@@ -115,6 +116,16 @@ function App() {
             path="/map"
           >
             <Map />
+          </Route>
+
+          <Route
+            // with authRedirect:
+            // - if logged in, redirects to "/user"
+            // - else shows LandingPage at "/home"
+            exact
+            path="/job"
+          >
+            <JobBoard />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
