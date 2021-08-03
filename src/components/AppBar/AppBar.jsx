@@ -22,6 +22,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import HomeIcon from '@material-ui/icons/Home';
+import SearchIcon from '@material-ui/icons/Search';
+import InfoIcon from '@material-ui/icons/Info';
+import PostAddIcon from '@material-ui/icons/PostAdd';
 import MailIcon from '@material-ui/icons/Mail';
 
 import './AppBar.css';
@@ -155,18 +159,26 @@ if (user.id != null) {
         </div>
         <Divider />
         <List>
-          {[
-		  <Link className="drawerLink" to="/">Home</Link>, 
-		  <Link className="drawerLink"  to="/job">Job Board</Link>, 
-		  'Post a Job', 
-		  <Link className="drawerLink" to="/about">About</Link>,
-		  <Link className="drawerLink" to="/">Home</Link>,
-		].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+            <ListItem button>
+              <ListItemIcon><HomeIcon /></ListItemIcon>
+              <Link className="drawerLink" to="/">Home</Link>
+              <ListItemText/>
             </ListItem>
-          ))} 
+            <ListItem button>
+              <ListItemIcon><SearchIcon /></ListItemIcon>
+              <Link className="drawerLink"  to="/job">Job Board</Link>
+              <ListItemText/>
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon><PostAddIcon /></ListItemIcon>
+              <Link className="drawerLink" to="/about">Post Job</Link>
+              <ListItemText/>
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon><InfoIcon /></ListItemIcon>
+              <Link className="drawerLink" to="/about">About</Link>
+              <ListItemText/>
+            </ListItem>
         </List>
 		<Divider />
 		<LogOutButton className="navLink" />
