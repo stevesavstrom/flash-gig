@@ -14,7 +14,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   FROM job
   JOIN venue ON venue.id = job.venue_id
   JOIN service ON service.id = job.service_id
-  ORDER BY "date" ASC;`;
+  ORDER BY "date" DESC;`;
   pool
     .query(query)
     .then((result) => {

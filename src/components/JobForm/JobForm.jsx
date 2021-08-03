@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import './JobForm.css';
 
@@ -12,6 +13,7 @@ function JobForm() {
   const [service, setService] = useState('');
 
   const dispatch = useDispatch();
+  const history = useHistory();
   // const errors = useSelector((store) => store.errors);
 
   const postJob = (event) => {
@@ -28,7 +30,9 @@ function JobForm() {
         service: service,
       },
     });
+    history.push('/job');
   }; // end postJob
+
 
   return ( 
     <form className="jobFormPanel" onSubmit={postJob}>
@@ -112,7 +116,13 @@ function JobForm() {
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Post" />
+
+        <input 
+        className="btn" 
+        type="submit" 
+        name="submit" 
+        value="Post" 
+        />
       </div>
     </form>
   );
