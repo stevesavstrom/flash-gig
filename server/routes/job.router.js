@@ -12,9 +12,9 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   const query = 
   `SELECT *, venue, service  
   FROM job
-  JOIN venue ON venue.id = job.id
-  JOIN service ON service.id = job.id
-  ORDER BY "date" ASC`;
+  JOIN venue ON venue.id = job.venue_id
+  JOIN service ON service.id = job.service_id
+  ORDER BY "date" ASC;`;
   pool
     .query(query)
     .then((result) => {
@@ -49,6 +49,32 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
       );
       res.sendStatus(500);
     });
+});
+
+// POST a job to the job board
+router.post("/", rejectUnauthenticated, (req, res) => {
+  console.log("req.body:", req.body);
+  const addItemQuery = `INSERT INTO job (user_id, headline, date, venue_id, hours, pay, service_id)
+   VALUES ($1, $2, $3, $4, $5, $6, $7);`;
+  pool
+    .query(addItemQuery, [
+      req.user.id,
+      req.body.headline,
+      req.body.date,
+      req.body.venue,
+      req.body.hours,
+      req.body.pay,
+      req.body.service
+    ])
+    .then((result) => {
+      console.log("New job is is", result);
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log(`ERROR adding job: ${error}`);
+      res.sendStatus(500);
+    });
+  // endpoint functionality
 });
 
 module.exports = router;

@@ -24,6 +24,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import Map from '../GoogleMap/GoogleMap';
 import JobBoard from '../JobBoard/JobBoard';
 import PersistentDrawerLeft from '../AppBar/AppBar';
+import JobForm from '../JobForm/JobForm';
 
 import './App.css';
 
@@ -126,6 +127,16 @@ function App() {
             path="/job"
           >
             <JobBoard />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // with authRedirect:
+            // - if logged in, redirects to "/user"
+            // - else shows LandingPage at "/home"
+            exact
+            path="/post"
+          >
+            <JobForm />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}

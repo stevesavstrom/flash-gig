@@ -9,7 +9,7 @@ function UserPage() {
   return (
     <div className="container">
       <h2>Welcome {user.first_name}!</h2>
-      <h2>Located in {user.city}</h2>
+      <h2>{user.city}</h2>
       <h2>{user.service}</h2>
       <h2>Bio: {user.bio}</h2>
       <p>Your ID is: {user.id}</p>

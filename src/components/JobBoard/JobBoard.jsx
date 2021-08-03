@@ -11,6 +11,7 @@ function JobBoard() {
     dispatch({
       type: "GET_JOB",
     });
+    console.log(jobItem);
   }, []);
 
   return (

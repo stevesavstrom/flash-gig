@@ -171,7 +171,7 @@ if (user.id != null) {
             </ListItem>
             <ListItem button>
               <ListItemIcon><PostAddIcon /></ListItemIcon>
-              <Link className="drawerLink" to="/about">Post Job</Link>
+              <Link className="drawerLink" to="/post">Post Job</Link>
               <ListItemText/>
             </ListItem>
             <ListItem button>
