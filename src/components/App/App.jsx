@@ -11,15 +11,14 @@ require("dotenv").config();
 
 import { useDispatch } from 'react-redux';
 
+// Components
 // import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
-import LandingPage from '../LandingPage/LandingPage';
+// import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Map from '../GoogleMap/GoogleMap';
@@ -92,13 +91,13 @@ function App() {
             // - if logged in, redirects to "/user"
             // - else shows RegisterPage at "/registration"
             exact
-            path="/registration"
+            path="/home"
             authRedirect="/user"
           >
             <RegisterPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
+          {/* <ProtectedRoute
             // with authRedirect:
             // - if logged in, redirects to "/user"
             // - else shows LandingPage at "/home"
@@ -107,7 +106,7 @@ function App() {
             authRedirect="/user"
           >
             <LandingPage />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           <Route
             // with authRedirect:

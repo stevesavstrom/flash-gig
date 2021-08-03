@@ -11,8 +11,8 @@ require("dotenv").config();
 const key = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 
 const containerStyle = {
-	width: '100vw',
-	height: '500px'
+	width: '100%',
+	height: '250px'
   };
 
 const center = {
@@ -73,7 +73,6 @@ function Map() {
 
   return isLoaded ? (
     <div>
-      <h1>Find Jobs</h1>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
