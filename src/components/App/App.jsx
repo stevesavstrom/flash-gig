@@ -11,7 +11,7 @@ require("dotenv").config();
 
 import { useDispatch } from 'react-redux';
 
-import Nav from '../Nav/Nav';
+// import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -24,7 +24,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Map from '../GoogleMap/GoogleMap';
 import JobBoard from '../JobBoard/JobBoard';
-
+import PersistentDrawerLeft from '../AppBar/AppBar';
 
 import './App.css';
 
@@ -38,7 +38,8 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav />
+        <PersistentDrawerLeft />
+        {/* <Nav /> */}
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -118,7 +119,7 @@ function App() {
             <Map />
           </Route>
 
-          <Route
+          <ProtectedRoute
             // with authRedirect:
             // - if logged in, redirects to "/user"
             // - else shows LandingPage at "/home"
@@ -126,7 +127,7 @@ function App() {
             path="/job"
           >
             <JobBoard />
-          </Route>
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

@@ -8,7 +8,11 @@ const {
 // GET all jobs to display on job board
 router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("In GET all jobs");
-  const query = `SELECT * FROM job ORDER BY "date" ASC`;
+  const query = 
+  `SELECT *, venue  
+  FROM job
+  JOIN venue ON venue.id = job.id
+  ORDER BY "date" ASC`;
   pool
     .query(query)
     .then((result) => {

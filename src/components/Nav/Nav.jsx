@@ -23,6 +23,7 @@ function Nav() {
         {/* <h2 className="nav-title">FlashGig</h2> */}
         <img className="navLogo" src="/images/logo.png"></img>
       </Link>
+      
       <div>
         <Link className="navLink" to={loginLinkData.path}>
           {loginLinkData.text}
