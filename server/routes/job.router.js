@@ -6,12 +6,14 @@ const {
 } = require("../modules/authentication-middleware");
 
 // GET all jobs to display on job board
+// JOINS with SERVICE and VENUE table to render venue name and service by id.
 router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("In GET all jobs");
   const query = 
-  `SELECT *, venue  
+  `SELECT *, venue, service  
   FROM job
   JOIN venue ON venue.id = job.id
+  JOIN service ON service.id = job.id
   ORDER BY "date" ASC`;
   pool
     .query(query)
