@@ -32,3 +32,10 @@ h2 {
 .jobBoardContainer {
 	padding: 0px;
 }
+
+.jobBoardImage {
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
