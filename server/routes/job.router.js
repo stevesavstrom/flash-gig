@@ -10,7 +10,7 @@ const {
 router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("In GET all jobs");
   const query = 
-  `SELECT *, venue, service  
+  `SELECT job.*, venue.description, venue.image
   FROM job
   JOIN venue ON venue.id = job.venue_id
   JOIN service ON service.id = job.service_id
@@ -18,7 +18,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   pool
     .query(query)
     .then((result) => {
-      // console.log(result.rows);
+      console.log(result.rows);
       res.send(result.rows);
     })
     .catch((error) => {
@@ -53,17 +53,17 @@ router.get("/userJob", rejectUnauthenticated, (req, res) => {
 // GET job by ID to display job details. 
 // User clicks on details button and will be directed to job details view.
 router.get("/:id", rejectUnauthenticated, (req, res) => {
-  const detailsId = req.params.id;
   console.log("In GET job details");
-  console.log(`Job detailsId`, detailsId);
+  console.log(`Job detail ID`, req.params.id);
   // This query returns all details to be displayed on details page.
   const query = 
-  `SELECT *, venue, service  
+  `SELECT job.headline, venue.description, venue.image, service.id
   FROM job
   JOIN venue ON venue.id = job.venue_id
-  JOIN service ON service.id = job.service_id;`;
+  JOIN service ON service.id = job.service_id
+  WHERE job.id = $1;`;
   pool
-    .query(query, [detailsId])
+    .query(query, [req.params.id])
     .then((result) => {
       console.log(`GET details by ID working`);
       res.send(result.rows);

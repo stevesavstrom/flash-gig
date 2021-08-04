@@ -17,6 +17,7 @@ function JobBoard() {
   }, []);
 
   const handleDetails = (details) => {
+    console.log('Details', details);
     dispatch({ type: "GET_JOB_DETAILS", payload: details.id });
     history.push(`details/${details.id}`);
   };
