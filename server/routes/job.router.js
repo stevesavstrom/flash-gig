@@ -27,6 +27,28 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
+// GET all jobs by user id
+router.get("/", rejectUnauthenticated, (req, res) => {
+  console.log("In GET all jobs");
+  const query = 
+  `SELECT *, venue, service  
+  FROM job
+  JOIN venue ON venue.id = job.venue_id
+  JOIN service ON service.id = job.service_id
+  WHERE user_id = $1
+  ORDER BY "date" DESC;`;
+  pool
+    .query(query [req.user.id])
+    .then((result) => {
+      console.log(result.rows);
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log("Error GET all jobs not working - check job router", error);
+      res.sendStatus(500);
+    });
+});
+
 // GET job by ID to display job details. User clicks on details button and will be directed to job details view.
 router.get("/:id", rejectUnauthenticated, (req, res) => {
   const detailsId = req.params.id;
