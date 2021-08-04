@@ -23,3 +23,25 @@
   font-family: arial;
   border-radius: 8px;
 }
+
+.userJobCard {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 3px;
+  padding-left: 20px;
+  width: 90%;
+}
+
+.postedJobsHeader {
+  text-align: center;
+  padding: 10px;
+}
+
+.logoutButton {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

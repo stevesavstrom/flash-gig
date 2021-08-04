@@ -40,20 +40,23 @@ function UserPage() {
       </div>
 
       {/* Users posted jobs */}
-      <div className="userJobBoardContainer">
-      <Typography variant="h5" gutterBottom>Upcoming Jobs</Typography>
+      {/* <div className="userJobBoardContainer"> */}
+      <Typography className="postedJobsHeader" variant="h5" gutterBottom>Posted Jobs</Typography>
       {jobItem.map((job) => {
-       return <div className="jobCard" key={job.id}>
+       return <div className="userJobCard" key={job.id}>
       <div className="jobItem">
 			<p><strong>Date:</strong> {job.date} </p>
       <p><strong>Venue:</strong> {job.venue} </p>
 			<p><strong>Hours:</strong> {job.hours} </p>
 			<p><strong>Pay:</strong> ${job.pay} </p>
 			<p><strong>Service Needed:</strong> {job.service} </p>
+      <button>Applicants</button>
+      <button>Delete</button>
+      <button>Edit</button>
       </div>
 		</div>
       })}
-      </div>
+      {/* </div> */}
 
 
       <LogOutButton className="logoutButton" />
