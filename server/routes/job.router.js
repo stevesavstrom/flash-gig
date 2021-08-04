@@ -29,7 +29,8 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 
 // GET all jobs by user id
 router.get("/", rejectUnauthenticated, (req, res) => {
-  console.log("In GET all jobs");
+  console.log("In GET jobs by user ID");
+  console.log('user', req.user);
   const query = 
   `SELECT *, venue, service  
   FROM job
