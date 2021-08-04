@@ -32,7 +32,7 @@ router.get("/userJob", rejectUnauthenticated, (req, res) => {
   console.log("In GET jobs by user ID");
   console.log('user', req.user);
   const query = 
-  `SELECT *, venue, service  
+  `SELECT job.*, venue, service
   FROM job
   JOIN venue ON venue.id = job.venue_id
   JOIN service ON service.id = job.service_id
@@ -101,7 +101,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 });
 
 // DELETE job by id (user can only delete jobs they have posted)
-router.delete("/userJob/:id", rejectUnauthenticated, (req, res) => {
+router.delete("/:id", rejectUnauthenticated, (req, res) => {
   console.log(`Job being DELETED:`, req.params.id);
   const query = `DELETE from job WHERE id=$1;`;
   pool

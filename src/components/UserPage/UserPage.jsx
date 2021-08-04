@@ -23,6 +23,11 @@ function UserPage() {
     console.log(`User Job Item:`, userJobItem);
   }, []);
 
+  const handleDelete = (deleteItem) => {
+    console.log(`Delete item`, deleteItem);
+    dispatch({ type: 'DELETE_JOB', payload: deleteItem })
+  }
+
   return (
     <div className="profile">
 
@@ -44,13 +49,14 @@ function UserPage() {
       {userJobItem.map((job) => {
        return <div className="userJobCard" key={job.id}>
       <div className="jobItem">
+      <p><strong>ID:</strong> {job.id} </p>
 			<p><strong>Date:</strong> {job.date} </p>
       <p><strong>Venue:</strong> {job.venue} </p>
 			<p><strong>Hours:</strong> {job.hours} </p>
 			<p><strong>Pay:</strong> ${job.pay} </p>
 			<p><strong>Service Needed:</strong> {job.service} </p>
       <button>Applicants</button>
-      <button>Delete</button>
+      <button onClick={ () => handleDelete(job.id)}>Delete</button>
       <button>Edit</button>
       </div>
 		</div>
