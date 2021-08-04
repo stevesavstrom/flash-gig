@@ -7,9 +7,9 @@ function* userJobSaga(){
 
 function* fetchUserJob() {
     try {
-        const response = yield axios.get('/api/job');
+        const response = yield axios.get('/api/job/userJob');
         console.log(response);
-        yield put({ type: 'SET_JOB', payload: response.data});
+        yield put({ type: 'SET_USER_JOB', payload: response.data});
     } catch (error) {
         console.log('Error GETting user jobs client side', error);
     }

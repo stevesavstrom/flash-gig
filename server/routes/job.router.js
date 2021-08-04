@@ -18,7 +18,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   pool
     .query(query)
     .then((result) => {
-      console.log(result.rows);
+      // console.log(result.rows);
       res.send(result.rows);
     })
     .catch((error) => {
@@ -28,7 +28,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 });
 
 // GET all jobs by user id
-router.get("/", rejectUnauthenticated, (req, res) => {
+router.get("/userJob", rejectUnauthenticated, (req, res) => {
   console.log("In GET jobs by user ID");
   console.log('user', req.user);
   const query = 
@@ -39,9 +39,9 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   WHERE user_id = $1
   ORDER BY "date" DESC;`;
   pool
-    .query(query [req.user.id])
+    .query(query, [req.user.id])
     .then((result) => {
-      console.log(result.rows);
+      console.log(`Result:`, result.rows);
       res.send(result.rows);
     })
     .catch((error) => {
