@@ -50,7 +50,7 @@ router.get("/userJob", rejectUnauthenticated, (req, res) => {
     });
 });
 
-// GET job by ID to display job details. User clicks on details button and will be directed to job details view.
+// IN PROGRESS --- GET job by ID to display job details. User clicks on details button and will be directed to job details view.
 router.get("/:id", rejectUnauthenticated, (req, res) => {
   const detailsId = req.params.id;
   console.log("In GET details");
@@ -98,6 +98,22 @@ router.post("/", rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
   // endpoint functionality
+});
+
+// DELETE job by id (user can only delete jobs they have posted)
+router.delete("/userJob/:id", rejectUnauthenticated, (req, res) => {
+  console.log(`Job being DELETED:`, req.params.id);
+  const query = `DELETE from job WHERE id=$1;`;
+  pool
+    .query(query, [req.params.id])
+    .then((result) => {
+      console.log(`Successfully DELETED job from database`, result);
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log(`ERROR trying to DELETE job from database`, error);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

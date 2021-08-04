@@ -34,8 +34,8 @@ function UserPage() {
         <Rating name="read-only" value={value} readOnly />
       </Box>
       <Typography variant="h6" gutterBottom>{user.service} based in {user.city}</Typography>
-      <Typography variant="h6" gutterBottom>{user.bio}</Typography>
-      <Typography variant="h6" gutterBottom>Your ID is: {user.id}</Typography>
+      <Typography variant="subtitle1" gutterBottom>{user.bio}</Typography>
+      {/* <Typography variant="h6" gutterBottom>Your ID is: {user.id}</Typography> */}
       </div>
 
       {/* Users posted jobs */}
