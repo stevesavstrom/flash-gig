@@ -1,10 +1,10 @@
 .jobFormPanel {
 	box-sizing: border-box;
-	width: 400px;
+	width: 90%;
 	max-width: 100%;
 	padding: 25px;
 	margin: 0 auto 20px;
-	background-color: #efefef;
+	background-color: #ffffff;
 	border-radius: 3px;
 	box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
 }
@@ -13,5 +13,8 @@
 	width: 100%;
 	padding: 8px;
 	margin: 5px;
-	margin-bottom: 10px;
+}
+
+.textField {
+	margin-bottom: 5px;
 }

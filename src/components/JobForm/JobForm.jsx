@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
 import './JobForm.css';
+
+// Material-UI
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
 
 function JobForm() {
   const [headline, setHeadline] = useState('');
@@ -37,78 +49,87 @@ function JobForm() {
   return ( 
     <form className="jobFormPanel" onSubmit={postJob}>
       <h2>Post a Job</h2>
-      <div>
-        <label htmlFor="headline">
-          <input
+
+      <div className="textField">
+          <TextField
             className="jobInput"
+            id="outlined-basic"
+            label="Headline"
+            variant="outlined"
             type="text"
             name="headline"
-            placeholder="Headline"
             value={headline}
             required
             onChange={(event) => setHeadline(event.target.value)}
           />
-        </label>
       </div>
-      <div>
-        <label htmlFor="date">
-          <input
+      <div className="textField">
+        <TextField
             className="jobInput"
+            id="outlined-basic"
+            label="Date"
+            variant="outlined"
             type="text"
             name="date"
-            placeholder="Date"
             value={date}
             required
             onChange={(event) => setDate(event.target.value)}
           />
-        </label>
       </div>
-      <div>
+      <div className="textField">
         <label htmlFor="venue">
-          <input
+        <TextField
             className="jobInput"
+            id="outlined-basic"
+            label="Venue"
+            variant="outlined"
             type="text"
             name="venue"
-            placeholder="Venue"
             value={venue}
             required
             onChange={(event) => setVenue(event.target.value)}
           />
         </label>
       </div>
-      <div>
+      <div className="textField">
         <label htmlFor="hours">
-          <input
+        <TextField
             className="jobInput"
+            id="outlined-basic"
+            label="Hours"
+            variant="outlined"
             type="text"
             name="hours"
-            placeholder="Hours"
             value={hours}
             required
             onChange={(event) => setHours(event.target.value)}
           />
         </label>
       </div>
-      <div>
+      <div className="textField">
         <label htmlFor="pay">
-          <input
+        <TextField
             className="jobInput"
+            id="outlined-basic"
+            label="Pay"
+            variant="outlined"
             type="text"
             name="pay"
-            placeholder="Pay"
             value={pay}
             required
             onChange={(event) => setPay(event.target.value)}
           />
         </label>
       </div>
-      <div>
+      <div className="textField">
         <label htmlFor="service">
-          <input
+        <TextField
             className="jobInput"
+            id="outlined-basic"
+            label="Service Needed"
+            variant="outlined"
             type="text"
             name="service"
-            placeholder="Service Needed"
             value={service}
             required
             onChange={(event) => setService(event.target.value)}
@@ -125,6 +146,7 @@ function JobForm() {
         />
       </div>
     </form>
+
   );
 }
 
