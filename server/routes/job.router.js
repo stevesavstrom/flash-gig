@@ -50,15 +50,18 @@ router.get("/userJob", rejectUnauthenticated, (req, res) => {
     });
 });
 
-// IN PROGRESS --- GET job by ID to display job details. User clicks on details button and will be directed to job details view.
+// GET job by ID to display job details. 
+// User clicks on details button and will be directed to job details view.
 router.get("/:id", rejectUnauthenticated, (req, res) => {
   const detailsId = req.params.id;
-  console.log("In GET details");
-  console.log(`details id`, detailsId);
+  console.log("In GET job details");
+  console.log(`Job detailsId`, detailsId);
   // This query returns all details to be displayed on details page.
-  const query = `SELECT headline, date, venue_id, hours, pay, service_id
-	FROM job
-	WHERE job.id = $1;`;
+  const query = 
+  `SELECT *, venue, service  
+  FROM job
+  JOIN venue ON venue.id = job.venue_id
+  JOIN service ON service.id = job.service_id;`;
   pool
     .query(query, [detailsId])
     .then((result) => {
@@ -66,10 +69,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
       res.send(result.rows);
     })
     .catch((error) => {
-      console.log(
-        "Error GET details by ID not working - check job router",
-        error
-      );
+      console.log("Error GET details by ID not working - check job router", error);
       res.sendStatus(500);
     });
 });
