@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Map from '../GoogleMap/GoogleMap';
 import './JobBoard.css';
 
 function JobBoard() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const jobItem = useSelector((store) => store.JobReducer);
 
   useEffect(() => {
@@ -13,6 +15,11 @@ function JobBoard() {
     });
     console.log(jobItem);
   }, []);
+
+  const handleDetails = (details) => {
+    dispatch({ type: "GET_JOB_DETAILS", payload: details.id });
+    history.push(`details/${details.id}`);
+  };
 
   return (
     <div className="jobBoardContainer">
@@ -29,7 +36,7 @@ function JobBoard() {
 			<p><strong>Pay:</strong> ${job.pay} </p>
 			<p><strong>Service Needed:</strong> {job.service} </p>
       <p><strong>Venue Description:</strong> {job.description} </p>
-			<button className="applyButton">More</button>
+			<button className="detailsButton" onClick={() => handleDetails(job)}>More</button>
 		</div>
       })}
     </div>

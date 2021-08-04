@@ -6,6 +6,7 @@ import jobSaga from './job.saga';
 import postJobSaga from './postJob.saga';
 import userJobSaga from './userJob.saga';
 import deleteJobSaga from './deleteJob.saga';
+import jobDetailsSaga from './jobDetails.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     postJobSaga(),
     userJobSaga(),
     deleteJobSaga(),
+    jobDetailsSaga(),
   ]);
 }
