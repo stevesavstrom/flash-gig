@@ -10,7 +10,15 @@ const {
 router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("In GET all jobs");
   const query = 
-  `SELECT job.*, venue.description, venue.image
+  `SELECT
+  job.headline, 
+  job.date, 
+  job.hours, 
+  job.pay, 
+  venue.venue, 
+  venue.description, 
+  venue.image, 
+  service.id
   FROM job
   JOIN venue ON venue.id = job.venue_id
   JOIN service ON service.id = job.service_id
@@ -32,7 +40,7 @@ router.get("/userJob", rejectUnauthenticated, (req, res) => {
   console.log("In GET jobs by user ID");
   console.log('user', req.user);
   const query = 
-  `SELECT job.*, venue, service
+  `SELECT *, venue, service
   FROM job
   JOIN venue ON venue.id = job.venue_id
   JOIN service ON service.id = job.service_id
@@ -57,7 +65,15 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
   console.log(`Job detail ID`, req.params.id);
   // This query returns all details to be displayed on details page.
   const query = 
-  `SELECT job.headline, venue.description, venue.image, service.id
+  `SELECT
+  job.headline, 
+  job.date, 
+  job.hours, 
+  job.pay, 
+  venue.venue, 
+  venue.description, 
+  venue.image, 
+  service.id
   FROM job
   JOIN venue ON venue.id = job.venue_id
   JOIN service ON service.id = job.service_id

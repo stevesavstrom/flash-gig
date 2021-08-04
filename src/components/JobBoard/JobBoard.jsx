@@ -36,7 +36,7 @@ function JobBoard() {
 			<p><strong>Hours:</strong> {job.hours} </p>
 			<p><strong>Pay:</strong> ${job.pay} </p>
 			<p><strong>Service Needed:</strong> {job.service} </p>
-      <p><strong>Venue Description:</strong> {job.description} </p>
+      {/* <p><strong>Venue Description:</strong> {job.description} </p> */}
 			<button className="detailsButton" onClick={() => handleDetails(job)}>More</button>
 		</div>
       })}

@@ -15,16 +15,16 @@ function JobDetails() {
   	// };
 
 	return (
-		<>
-		<h4>{jobDetails && jobDetails.headline} </h4>
-    	<img className="jobBoardImage" src={jobDetails[0].image}></img>
+		<div className="detailsContainer">
+		<h4>{jobDetails && jobDetails[0].headline} </h4>
+    	<img className="jobBoardImage" src={jobDetails && jobDetails[0].image}></img>
 		<p><strong>Date:</strong> {jobDetails && jobDetails[0].date} </p>
     	<p><strong>Venue:</strong> {jobDetails && jobDetails[0].venue} </p>
 		<p><strong>Hours:</strong> {jobDetails && jobDetails[0].hours} </p>
 		<p><strong>Pay:</strong> ${jobDetails && jobDetails[0].pay} </p>
 		<p><strong>Service Needed:</strong> {jobDetails && jobDetails[0].service} </p>
     	<p><strong>Venue Description:</strong> {jobDetails && jobDetails[0].description} </p>
-		</>
+		</div>
 
 	)
 }
