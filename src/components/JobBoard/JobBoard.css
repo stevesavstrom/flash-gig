@@ -3,11 +3,14 @@ h2 {
 }
 
 .jobCard {
-  border-bottom: 1px solid black;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   margin: auto;
+  margin-bottom: 5px;
   padding: 3px;
   padding-left: 20px;
   width: 90%;
+  background-color: #ffffff;
 }
 
 .detailsButton {

@@ -39,11 +39,11 @@ CREATE TABLE "job" (
     "service_id" INT REFERENCES "service"(id)
 );
 
--- List of applications
+-- List of applications (updated default to 'Applied' and added 'ON DELETE CASCADE')
 CREATE TABLE "application" (
     "id" SERIAL PRIMARY KEY,
-    "job_id" INT REFERENCES "job"(id),
+    "job_id" INT REFERENCES "job"(id) ON DELETE CASCADE,
     "applicant_id" INT REFERENCES "user"(id),
     "message" TEXT,
-    "status" VARCHAR(55) DEFAULT 'A'
+    "status" VARCHAR(55) DEFAULT 'Applied'
 );
