@@ -55,9 +55,11 @@ function UserPage() {
 			<p><strong>Hours:</strong> {job.hours} </p>
 			<p><strong>Pay:</strong> ${job.pay} </p>
 			<p><strong>Service Needed:</strong> {job.service} </p>
-      <button>Applicants</button>
-      <button onClick={ () => handleDelete(job.id)}>Delete</button>
-      <button>Edit</button>
+      <div className="buttonGroup">
+      <button className="userJobButton">Applicants</button>
+      <button className="userJobButton" onClick={ () => handleDelete(job.id)}>Delete</button>
+      <button className="userJobButton">Edit</button>
+      </div>
       </div>
 		</div>
       })}
