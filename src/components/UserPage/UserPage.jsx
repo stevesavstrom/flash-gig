@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
+import { useHistory } from "react-router-dom";
 import './UserPage.css';
 
 // Material-UI
@@ -10,7 +11,9 @@ import Box from '@material-ui/core/Box';
 
 function UserPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const userJobItem = useSelector((store) => store.UserJobReducer);
+  const applicationDetails = useSelector((store) => store.ApplicationDetailsReducer);
   const user = useSelector((store) => store.user);
 
   // Star rating widget
@@ -22,6 +25,12 @@ function UserPage() {
     });
     console.log(`User Job Item:`, userJobItem);
   }, []);
+
+  const handleApplicationDetails = (details) => {
+    console.log('Details', details);
+    dispatch({ type: "GET_APPLICATION_DETAILS", payload: details.id });
+    history.push(`application/${details.id}`);
+  };
 
   const handleDelete = (deleteItem) => {
     console.log(`Delete item`, deleteItem);
@@ -55,7 +64,7 @@ function UserPage() {
 			<p><strong>Pay:</strong> ${job.pay} </p>
 			<p><strong>Service Needed:</strong> {job.service} </p>
       <div className="buttonGroup">
-      <button className="userJobButton">Applicants</button>
+      <button className="userJobButton" onClick={() => handleApplicationDetails(job)}>Applicants</button>
       <button className="userJobButton" onClick={ () => handleDelete(job.id)}>Delete</button>
       <button className="userJobButton">Edit</button>
       </div>
