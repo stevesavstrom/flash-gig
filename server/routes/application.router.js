@@ -6,6 +6,7 @@ const {
 } = require("../modules/authentication-middleware");
 
 // GET applications by job id
+// Used for viewing a list of all applicants to a specific job posting
 router.get("/:id", rejectUnauthenticated, (req, res) => {
 	console.log("In GET applications by job ID");
 	console.log(`Job detail ID`, req.params.id);
@@ -36,5 +37,27 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 		res.sendStatus(500);
 	  });
   });
+
+// POST a new application using the application form on the ApplicationForm component
+router.post("/", rejectUnauthenticated, (req, res) => {
+	console.log("req.body:", req.body);
+	const query = `INSERT INTO job (job_id, applicant_id, message)
+	 VALUES ($1, $2, $3);`;
+	pool
+	  .query(query, [
+		req.body.job_id,
+		req.user.id,
+		req.body.message
+	  ])
+	  .then((result) => {
+		console.log("New application is", result);
+		res.sendStatus(201);
+	  })
+	  .catch((error) => {
+		console.log(`ERROR adding application: ${error}`);
+		res.sendStatus(500);
+	  });
+  });
+
 
 module.exports = router;

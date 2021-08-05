@@ -34,6 +34,8 @@ function ApplicationDetails() {
     	<p><strong>Applicant ID:</strong> {application && application.applicant_id} </p>
 		<p><strong>Message:</strong> {application && application.message} </p>
 		<p><strong>Status:</strong> {application && application.status} </p>
+		<button>Confirm</button>
+		<button>Reject</button>
     	</div>
 		</div>
       })}
