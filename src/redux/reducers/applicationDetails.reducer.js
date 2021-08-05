@@ -1,4 +1,4 @@
-const ApplicationDetailsReducer = (state = 0, action) => {
+const ApplicationDetailsReducer = (state = [], action) => {
 	switch (action.type) {
 	  case "SET_APPLICATION_DETAILS":
 		return action.payload;

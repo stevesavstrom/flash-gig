@@ -9,7 +9,7 @@ function ApplicationDetails() {
 	const dispatch = useDispatch();
 	const history = useHistory();
 
-	console.log(`This is applicationDetails`, applicationDetails);
+	console.log(`***** This is applicationDetails *****`, applicationDetails);
 
 	const handleBack = (event) => {
     	event.preventDefault();
@@ -25,6 +25,18 @@ function ApplicationDetails() {
 	return (
 		<div className="applicationDetailsContainer">
 			<h1>Application Details</h1>
+
+		{applicationDetails.map((application, index) => {
+    	return <div className="applicationDetailsCard" key={index}>
+		<div className="applicationItem">
+    	<p><strong>Application ID:</strong> {application && application.id} </p>
+		<p><strong>Job ID:</strong> {application && application.job_id} </p>
+    	<p><strong>Applicant ID:</strong> {application && application.applicant_id} </p>
+		<p><strong>Message:</strong> {application && application.message} </p>
+		<p><strong>Status:</strong> {application && application.status} </p>
+    	</div>
+		</div>
+      })}
 
 
 		<button className="applicationDetailsButton" onClick={handleBack}>

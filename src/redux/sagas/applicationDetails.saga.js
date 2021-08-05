@@ -7,7 +7,7 @@ function* applicationDetailsSaga(){
 
 function* fetchApplicationDetails(action) {
     try {
-        const response = yield axios.get(`/api/job/${action.payload}`);
+        const response = yield axios.get(`/api/application/${action.payload}`);
         console.log('Application Details:', response.data);
         yield put({ type: 'SET_APPLICATION_DETAILS', payload: response.data});
     } catch (error) {
