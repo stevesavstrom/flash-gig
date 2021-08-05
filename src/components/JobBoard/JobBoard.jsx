@@ -27,8 +27,8 @@ function JobBoard() {
 			<Map />
       <h2>Available Jobs</h2>
 
-      {jobItem.map((job) => {
-       return <div className="jobCard" key={job.id}>
+      {jobItem.map((job, index) => {
+       return (<div className="jobCard" key={index}>
 			<h4>{job.headline} </h4>
       <img className="jobBoardImage" src={job.image}></img>
 			<p><strong>Date:</strong> {job.date} </p>
@@ -38,7 +38,7 @@ function JobBoard() {
 			<p><strong>Service Needed:</strong> {job.service} </p>
       {/* <p><strong>Venue Description:</strong> {job.description} </p> */}
 			<button className="detailsButton" onClick={() => handleDetails(job)}>More</button>
-		</div>
+		</div>)
       })}
     </div>
   );

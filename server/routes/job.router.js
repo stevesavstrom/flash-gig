@@ -11,6 +11,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("In GET all jobs");
   const query = 
   `SELECT
+  job.id,
   job.headline, 
   job.date, 
   job.hours, 
@@ -18,7 +19,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   venue.venue, 
   venue.description, 
   venue.image, 
-  service.id
+  service.service
   FROM job
   JOIN venue ON venue.id = job.venue_id
   JOIN service ON service.id = job.service_id
@@ -73,7 +74,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
   venue.venue, 
   venue.description, 
   venue.image, 
-  service.id
+  service.service
   FROM job
   JOIN venue ON venue.id = job.venue_id
   JOIN service ON service.id = job.service_id
@@ -81,7 +82,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
   pool
     .query(query, [req.params.id])
     .then((result) => {
-      console.log(`GET details by ID working`);
+      console.log(`GET details by ID working`, result.row);
       res.send(result.rows);
     })
     .catch((error) => {

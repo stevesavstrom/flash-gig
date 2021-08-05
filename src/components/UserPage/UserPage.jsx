@@ -46,8 +46,8 @@ function UserPage() {
       {/* Users posted jobs */}
       {/* <div className="userJobBoardContainer"> */}
       <Typography className="postedJobsHeader" variant="h5" gutterBottom>Posted Jobs</Typography>
-      {userJobItem.map((job) => {
-       return <div className="userJobCard" key={job.id}>
+      {userJobItem.map((job, index) => {
+       return <div className="userJobCard" key={index}>
       <div className="jobItem">
       <p><strong>ID:</strong> {job.id} </p>
 			<p><strong>Date:</strong> {job.date} </p>

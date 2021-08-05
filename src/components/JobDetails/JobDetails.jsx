@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./JobDetails.css";
 
 function JobDetails() {
 	const jobDetails = useSelector((store) => store.JobDetailsReducer);
+	const {id} = useParams();
+	const dispatch = useDispatch();
 	console.log(`This is jobDetails`, jobDetails);
 
-	// const history = useHistory();
+	const history = useHistory();
 
-	// const handleBack = (event) => {
-    // 	event.preventDefault();
-    // 	history.push(`/`);
-  	// };
+	const handleBack = (event) => {
+    	event.preventDefault();
+    	history.push(`/job`);
+  	};
+
+	useEffect(() => {
+		dispatch({ type: "GET_JOB_DETAILS", payload: id });
+	}, []);
+
+	console.log('***id', id);
 
 	return (
 		<div className="detailsContainer">
@@ -23,7 +31,10 @@ function JobDetails() {
 		<p><strong>Hours:</strong> {jobDetails && jobDetails[0].hours} </p>
 		<p><strong>Pay:</strong> ${jobDetails && jobDetails[0].pay} </p>
 		<p><strong>Service Needed:</strong> {jobDetails && jobDetails[0].service} </p>
-    	<p><strong>Venue Description:</strong> {jobDetails && jobDetails[0].description} </p>
+    	<p><strong>Venue Description:</strong> {jobDetails && jobDetails[0].description}</p>
+		<button className="detailsButton" onClick={handleBack}>
+          Back
+        </button>
 		</div>
 
 	)
