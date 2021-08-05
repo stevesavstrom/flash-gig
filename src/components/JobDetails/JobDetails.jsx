@@ -32,8 +32,13 @@ function JobDetails() {
 		<p><strong>Pay:</strong> ${jobDetails && jobDetails[0].pay} </p>
 		<p><strong>Service Needed:</strong> {jobDetails && jobDetails[0].service} </p>
     	<p><strong>Venue Description:</strong> {jobDetails && jobDetails[0].description}</p>
-		<button className="detailsButton" onClick={handleBack}>
+
+		<button className="jobDetailsButton" onClick={handleBack}>
           Back
+        </button>
+
+		<button className="jobDetailsButton">
+          Apply
         </button>
 		</div>
 

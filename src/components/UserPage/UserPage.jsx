@@ -30,7 +30,6 @@ function UserPage() {
 
   return (
     <div className="profile">
-
     {/* Users profile */}
     <div className="profileContainer">
       <h2>{user.first_name} {user.last_name}</h2>
@@ -39,7 +38,7 @@ function UserPage() {
         <Rating name="read-only" value={value} readOnly />
       </Box>
       <Typography variant="h6" gutterBottom>{user.service} based in {user.city}</Typography>
-      <Typography variant="subtitle1" gutterBottom>{user.bio}</Typography>
+      <Typography className="bioText" variant="subtitle1" gutterBottom>{user.bio}</Typography>
       {/* <Typography variant="h6" gutterBottom>Your ID is: {user.id}</Typography> */}
       </div>
 
@@ -64,17 +63,9 @@ function UserPage() {
 		</div>
       })}
       {/* </div> */}
-
-
       <LogOutButton className="logoutButton" />
-    
+      
     </div>
-
-
-
-
-
-
 
   );
 }

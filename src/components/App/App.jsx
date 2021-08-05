@@ -7,8 +7,6 @@ import {
 } from 'react-router-dom';
 
 require("dotenv").config();
-
-
 import { useDispatch } from 'react-redux';
 
 // Components

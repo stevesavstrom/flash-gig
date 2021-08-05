@@ -7,3 +7,30 @@
 	font-family: arial;
 	border-radius: 8px;
 }
+
+.detailsPosterProfile {
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.detailsAvatar{
+	border-radius: 50%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+	width: 70px;
+}
+
+.jobDetailsButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5px 10px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 4px;
+	background-color: #172536;
+	color: #f8f8f8;
+	font-size: 1.1rem;
+	outline: 0;
+	cursor: pointer;
+  }
