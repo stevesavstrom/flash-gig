@@ -41,7 +41,16 @@ router.get("/userJob", rejectUnauthenticated, (req, res) => {
   console.log("In GET jobs by user ID");
   console.log('user', req.user);
   const query = 
-  `SELECT *, venue, service
+  `SELECT
+  job.id,
+  job.headline, 
+  job.date, 
+  job.hours, 
+  job.pay, 
+  venue.venue, 
+  venue.description, 
+  venue.image, 
+  service.service
   FROM job
   JOIN venue ON venue.id = job.venue_id
   JOIN service ON service.id = job.service_id
