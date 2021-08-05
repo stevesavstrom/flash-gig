@@ -24,6 +24,7 @@ import JobBoard from '../JobBoard/JobBoard';
 import PersistentDrawerLeft from '../AppBar/AppBar';
 import JobForm from '../JobForm/JobForm';
 import JobDetails from '../JobDetails/JobDetails';
+import ApplicationDetails from '../ApplicationDetails/ApplicationDetails';
 
 import './App.css';
 
@@ -146,6 +147,16 @@ function App() {
             path="/details/:id"
           >
             <JobDetails />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // with authRedirect:
+            // - if logged in, redirects to "/user"
+            // - else shows LandingPage at "/home"
+            exact
+            path="/application/:id"
+          >
+            <ApplicationDetails />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}

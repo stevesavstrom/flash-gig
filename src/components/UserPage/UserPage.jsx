@@ -13,7 +13,6 @@ function UserPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const userJobItem = useSelector((store) => store.UserJobReducer);
-  const applicationDetails = useSelector((store) => store.ApplicationDetailsReducer);
   const user = useSelector((store) => store.user);
 
   // Star rating widget
