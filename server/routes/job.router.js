@@ -37,6 +37,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 });
 
 // GET all jobs by user id
+// Displays jobs a user has posted on UserPage
 router.get("/userJob", rejectUnauthenticated, (req, res) => {
   console.log("In GET jobs by user ID");
   console.log('user', req.user);
@@ -101,6 +102,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 });
 
 // POST a job to the job board
+// Action takes place on JobForm component by completing form and clicking 
 router.post("/", rejectUnauthenticated, (req, res) => {
   console.log("req.body:", req.body);
   const addItemQuery = `INSERT INTO job (user_id, headline, date, venue_id, hours, pay, service_id)

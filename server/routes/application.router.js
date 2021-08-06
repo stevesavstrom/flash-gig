@@ -38,6 +38,37 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 	  });
   });
 
+// GET all applications by applicant_id
+// Displays applications a user has submitted on UserPage
+router.get("/userApplication", rejectUnauthenticated, (req, res) => {
+	console.log("In GET application by applicant_id");
+	console.log('applicant_id/user', req.user);
+	const query = 
+	`SELECT
+	application.id,
+	application.job_id,
+	application.applicant_id,
+	application.message,
+	application.status,
+	job.headline, 
+	job.date, 
+	job.hours, 
+	job.pay
+	FROM application
+	JOIN job ON job.id = application.job_id
+	WHERE application.applicant_id = $1;`;
+	pool
+	  .query(query, [req.user.id])
+	  .then((result) => {
+		console.log(`Application Result:`, result.rows);
+		res.send(result.rows);
+	  })
+	  .catch((error) => {
+		console.log("Error GET applications by applicant_id not working - check application router", error);
+		res.sendStatus(500);
+	  });
+  });
+
 // POST a new application using the application form on the ApplicationForm component
 router.post("/", rejectUnauthenticated, (req, res) => {
 	console.log("req.body:", req.body);
