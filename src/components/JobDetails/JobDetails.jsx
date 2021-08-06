@@ -3,11 +3,24 @@ import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./JobDetails.css";
 
+// Material-UI
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
+
 function JobDetails() {
 	const jobDetails = useSelector((store) => store.JobDetailsReducer);
 	const {id} = useParams();
 	const dispatch = useDispatch();
-	console.log(`This is jobDetails`, jobDetails);
+	// console.log(`This is jobDetails`, jobDetails);
 
 	const history = useHistory();
 
@@ -16,13 +29,29 @@ function JobDetails() {
     	history.push(`/job`);
   	};
 
+	const [message, setMessage] = useState('');
+ 
 	useEffect(() => {
 		dispatch({ type: "GET_JOB_DETAILS", payload: id });
 	}, []);
 
-	console.log('***id', id);
+	const postApplication = (event) => {
+		event.preventDefault();
+	
+		dispatch({
+		  type: 'POST_APPLICATION',
+		  payload: {
+			job_id: id,
+			message: message,
+		  },
+		});
+		history.push('/job');
+	  }; // end postApplication
+
+	// console.log('***id', id);
 
 	return (
+		<div className="detailsMain">
 		<div className="detailsContainer">
 		<h4>{jobDetails && jobDetails[0].headline} </h4>
     	<img className="jobBoardImage" src={jobDetails && jobDetails[0].image}></img>
@@ -36,11 +65,40 @@ function JobDetails() {
 		<button className="jobDetailsButton" onClick={handleBack}>
           Back
         </button>
-
-		<button className="jobDetailsButton">
-          Apply
-        </button>
 		</div>
+
+		{/* Application form starts here */}
+		<form className="applyFormPanel" onSubmit={postApplication}>
+      <h2>Apply Now</h2>
+
+      <div className="textField">
+          <TextField
+            className="jobInput"
+            id="outlined-basic"
+            label="Message"
+            variant="outlined"
+            type="text"
+            name="message"
+            value={message}
+            required
+            onChange={(event) => setMessage(event.target.value)}
+          />
+      </div>
+      
+      <div>
+
+        <input 
+        className="btn" 
+        type="submit" 
+        name="submit" 
+        value="Post" 
+        />
+      </div>
+    </form>
+		</div>
+
+
+		
 
 	)
 }

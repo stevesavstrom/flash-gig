@@ -41,7 +41,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 // POST a new application using the application form on the ApplicationForm component
 router.post("/", rejectUnauthenticated, (req, res) => {
 	console.log("req.body:", req.body);
-	const query = `INSERT INTO job (job_id, applicant_id, message)
+	const query = `INSERT INTO application (job_id, applicant_id, message)
 	 VALUES ($1, $2, $3);`;
 	pool
 	  .query(query, [

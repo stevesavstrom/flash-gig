@@ -8,8 +8,9 @@ h2 {
   margin: auto;
   margin-bottom: 5px;
   padding: 3px;
-  padding-left: 20px;
-  width: 90%;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 93%;
   background-color: #ffffff;
 }
 
@@ -30,11 +31,14 @@ h2 {
 
 .jobBoardContainer {
 	padding: 0px;
+  text-align: left;
 }
 
 .jobBoardImage {
-  width: 100%;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  width: 95%;
+  border-radius: 8px;
+
 }

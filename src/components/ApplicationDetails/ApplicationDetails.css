@@ -6,4 +6,11 @@
 	text-align: left;
 	font-family: arial;
 	border-radius: 8px;
+	background-color: #ffff;
   }
+
+.applicationDetailsButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

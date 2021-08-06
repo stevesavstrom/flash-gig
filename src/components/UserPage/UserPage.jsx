@@ -56,7 +56,8 @@ function UserPage() {
       {userJobItem.map((job, index) => {
        return <div className="userJobCard" key={index}>
       <div className="jobItem">
-      <p><strong>ID:</strong> {job.id} </p>
+      <h3>{job.headline}</h3>
+      {/* <p><strong>ID:</strong> {job.id} </p> */}
 			<p><strong>Date:</strong> {job.date} </p>
       <p><strong>Venue:</strong> {job.venue} </p>
 			<p><strong>Hours:</strong> {job.hours} </p>
