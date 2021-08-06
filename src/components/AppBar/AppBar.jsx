@@ -87,6 +87,19 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
+  logo: {
+    margin: 'auto',
+    textAlign: 'center',
+    width: '100%',
+    height: '100%',
+    padding: '10px',
+  },
+  logoHorizontallyCenter: {
+    position: 'absolute', 
+    left: '50%', 
+    top: '52%',
+    transform: 'translate(-50%, -50%)'
+  }
 }));
 
 export default function PersistentDrawerLeft() {
@@ -135,9 +148,12 @@ if (user.id != null) {
           >
             <MenuIcon />
           </IconButton>
-		  <Link to="/home">
-		  <img className="navLogo" src="/images/logo.png"></img>
-		  </Link>
+          <div className={classes.logoHorizontallyCenter}>
+          <Link to="/home">
+		        <img className={classes.logo} src="/images/logo.png"></img>
+		      </Link>
+          </div>
+
           {/* <Typography variant="h5" noWrap>
 		  Flash Gig
           </Typography> */}
