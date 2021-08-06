@@ -3,10 +3,10 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import JobReducer from './job.reducer';
 import UserJobReducer from './userJob.reducer';
+import UserApplicationReducer from './userApplication.reducer';
 import JobDetailsReducer from './jobDetails.reducer';
 import ApplicationDetailsReducer from './applicationDetails.reducer';
 import ApplicationReducer from './application.reducer';
-
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +19,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   JobReducer,
   UserJobReducer,
+  UserApplicationReducer,
   JobDetailsReducer,
   ApplicationDetailsReducer,
   ApplicationReducer,

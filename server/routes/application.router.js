@@ -39,8 +39,8 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
   });
 
 // GET all applications by applicant_id
-// Displays applications a user has submitted on UserPage
-router.get("/userApplication", rejectUnauthenticated, (req, res) => {
+// Displays applications a user has submitted on UserPage dashboard
+router.get("/", rejectUnauthenticated, (req, res) => {
 	console.log("In GET application by applicant_id");
 	console.log('applicant_id/user', req.user);
 	const query = 
@@ -56,7 +56,8 @@ router.get("/userApplication", rejectUnauthenticated, (req, res) => {
 	job.pay
 	FROM application
 	JOIN job ON job.id = application.job_id
-	WHERE application.applicant_id = $1;`;
+	WHERE application.applicant_id = $1
+	ORDER BY "date" DESC;`;
 	pool
 	  .query(query, [req.user.id])
 	  .then((result) => {

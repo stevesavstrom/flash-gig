@@ -8,12 +8,15 @@ import './UserPage.css';
 import Typography from '@material-ui/core/Typography';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
+import CameraAltOutlinedIcon from '@material-ui/icons/CameraAltOutlined';
+import AssignmentTurnedInOutlinedIcon from '@material-ui/icons/AssignmentTurnedInOutlined';
 
 function UserPage() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const userJobItem = useSelector((store) => store.UserJobReducer);
   const user = useSelector((store) => store.user);
+  const userJobItem = useSelector((store) => store.UserJobReducer);
+  const userApplicationItem = useSelector((store) => store.UserApplicationReducer);
 
   // Star rating widget
   const [value, setValue] = React.useState(5);
@@ -21,6 +24,9 @@ function UserPage() {
   useEffect(() => {
     dispatch({
       type: "GET_USER_JOB",
+    });
+    dispatch({
+      type: "GET_USER_APPLICATION",
     });
     console.log(`User Job Item:`, userJobItem);
   }, []);
@@ -50,12 +56,15 @@ function UserPage() {
       {/* <Typography variant="h6" gutterBottom>Your ID is: {user.id}</Typography> */}
       </div>
 
-      {/* Users posted jobs */}
+      {/* Section: Users' posted jobs */}
       {/* <div className="userJobBoardContainer"> */}
-      <Typography className="postedJobsHeader" variant="h5" gutterBottom>Posted Jobs</Typography>
+      <Typography className="postedJobsHeader" variant="h5" gutterBottom>My Posted Jobs</Typography>
       {userJobItem.map((job, index) => {
        return <div className="userJobCard" key={index}>
       <div className="jobItem">
+      <div className="buttonGroup">
+      <CameraAltOutlinedIcon className="icon" style={{ fontSize: 70, color: '#172536'}} />
+      </div>
       <h3>{job.headline}</h3>
       {/* <p><strong>ID:</strong> {job.id} </p> */}
 			<p><strong>Date:</strong> {job.date} </p>
@@ -72,6 +81,25 @@ function UserPage() {
 		</div>
       })}
       {/* </div> */}
+
+      {/* Section: Jobs user has applied for */}
+      <Typography className="postedJobsHeader" variant="h5" gutterBottom>Jobs I Applied For</Typography>
+
+      {userApplicationItem.map((application, index) => {
+       return <div className="userApplicationCard" key={index}>
+      <div className="jobItem">
+      <div className="buttonGroup">
+      <AssignmentTurnedInOutlinedIcon className="icon" style={{ fontSize: 70, color: '#172536'}} />
+      </div>
+      <h1 className="statusText"><strong>{application.status}</strong></h1>
+      <h3>{application.headline}</h3>
+      <p><strong>Application ID:</strong> {application.id} </p>
+			<p><strong>Job ID:</strong> {application.job_id} </p>
+			<p><strong>Hours:</strong> {application.hours} </p>
+			<p><strong>Pay:</strong> ${application.pay} </p>
+      </div>
+		</div>
+      })}
       <LogOutButton className="logoutButton" />
       
     </div>

@@ -37,7 +37,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 });
 
 // GET all jobs by user id
-// Displays jobs a user has posted on UserPage
+// Displays jobs a user has posted on UserPage dashboard
 router.get("/userJob", rejectUnauthenticated, (req, res) => {
   console.log("In GET jobs by user ID");
   console.log('user', req.user);
