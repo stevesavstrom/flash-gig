@@ -29,7 +29,7 @@ function JobBoard() {
 
       {jobItem.map((job, index) => {
        return (<div className="jobCard" key={index}>
-			<h4>{job.headline} </h4>
+			<h2 className="jobBoardHeadline">{job.headline} </h2>
       <img className="jobBoardImage" src={job.image}></img>
 			<p><strong>Date:</strong> {job.date} </p>
       <p><strong>Venue:</strong> {job.venue} </p>

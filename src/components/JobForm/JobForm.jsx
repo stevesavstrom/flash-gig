@@ -48,7 +48,7 @@ function JobForm() {
 
   return ( 
     <form className="jobFormPanel" onSubmit={postJob}>
-      <img className="illustration" src="images/illustration1.png"></img>
+      {/* <img className="illustration" src="images/illustration1.png"></img> */}
       <h2>Post a Job</h2>
       <div className="textField">
           <TextField

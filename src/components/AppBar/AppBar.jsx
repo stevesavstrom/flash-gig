@@ -92,6 +92,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     width: '100%',
     height: '100%',
+    maxWidth: '300px',
     padding: '10px',
   },
   logoHorizontallyCenter: {

@@ -8,6 +8,7 @@ import "./ApplicationDetails.css";
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
+import LinkedCameraOutlinedIcon from '@material-ui/icons/LinkedCameraOutlined';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -25,6 +26,8 @@ const useStyles = makeStyles((theme) => ({
 
 function ApplicationDetails() {
 	const applicationDetails = useSelector((store) => store.ApplicationDetailsReducer);
+	const application = useSelector((store) => store.ApplicationReducer);
+
 	const {id} = useParams();
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -41,6 +44,11 @@ function ApplicationDetails() {
 		dispatch({ type: "GET_APPLICATION_DETAILS", payload: id });
 	}, []);
 
+	const handleConfirm = (application) => {
+		console.log('*** This is handle application payload', application);
+		dispatch({ type: 'CONFIRM_APPLICATION', payload: application })
+	}
+
 	console.log('***id', id);
 
 	return (
@@ -50,7 +58,10 @@ function ApplicationDetails() {
 		{applicationDetails.map((application, index) => {
     	return <div className="applicationDetailsCard" key={index}>
 		<div className="applicationItem">
-		<h3>📸 New Application from {application && application.first_name} {application && application.last_name} </h3>
+		<div className="buttonGroup">
+      <LinkedCameraOutlinedIcon className="icon" style={{ fontSize: 50, color: '#172536'}} />
+      </div>
+		<h3>New Application from {application && application.first_name} {application && application.last_name} </h3>
     	<p><strong>Application ID:</strong> {application && application.id} </p>
 		<p><strong>Job ID:</strong> {application && application.job_id} </p>
     	<p><strong>Applicant ID:</strong> {application && application.applicant_id} </p>
@@ -58,13 +69,18 @@ function ApplicationDetails() {
 		<p><strong>Status:</strong> {application && application.status} </p>
 
 		<Box textAlign='center' m={1}>
-		<Button size="small" style={{backgroundColor: '#172536', color: '#FFFFFF'}}>
+		<Button 
+		onClick={ () => handleConfirm(application)} 
+		size="small" 
+		style={{backgroundColor: '#172536', color: '#FFFFFF'}}>
 		Confirm
 		</Button>
 		</Box>
 
 		<Box textAlign='center' m={1}>
-		<Button size="small" style={{backgroundColor: '#172536', color: '#FFFFFF'}}>
+		<Button
+		size="small" 
+		style={{backgroundColor: '#172536', color: '#FFFFFF'}}>
 		Reject
 		</Button>
 		</Box>

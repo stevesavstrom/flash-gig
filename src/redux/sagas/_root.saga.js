@@ -10,6 +10,7 @@ import deleteJobSaga from './deleteJob.saga';
 import jobDetailsSaga from './jobDetails.saga';
 import applicationDetailsSaga from './applicationDetails.saga';
 import applicationSaga from './application.saga';
+import confirmApplicationSaga from './confirmApplication.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -31,5 +32,6 @@ export default function* rootSaga() {
     jobDetailsSaga(),
     applicationDetailsSaga(),
     applicationSaga(),
+    confirmApplicationSaga(),
   ]);
 }
