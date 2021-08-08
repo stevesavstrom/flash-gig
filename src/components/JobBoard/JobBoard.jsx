@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Map from '../GoogleMap/GoogleMap';
 import './JobBoard.css';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
 
 function JobBoard() {
   const dispatch = useDispatch();
