@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './JobForm.css';
 
 // Material-UI
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Box from "@material-ui/core/Box";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
       width: '25ch',
     },
+  },
+  select: {
+    width: "100%",
   },
 }));
 
@@ -26,7 +32,14 @@ function JobForm() {
 
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const serviceList = useSelector((store) => store.ServiceReducer);
+  const classes = useStyles();
   // const errors = useSelector((store) => store.errors);
+
+  useEffect(() => {
+    dispatch({ type: "GET_SERVICE" });
+  }, []);
 
   const postJob = (event) => {
     event.preventDefault();
@@ -120,8 +133,9 @@ function JobForm() {
             onChange={(event) => setPay(event.target.value)}
           />
         </label>
+
       </div>
-      <div className="textField">
+      {/* <div className="textField">
         <label htmlFor="service">
         <TextField
             className="jobInput"
@@ -135,7 +149,23 @@ function JobForm() {
             onChange={(event) => setService(event.target.value)}
           />
         </label>
-      </div>
+      </div> */}
+
+            <Select
+          className={classes.select}
+          value={service}
+          onChange={(event) => setService(event.target.value)}
+          variant="outlined"
+        >
+          {serviceList.map((service) => {
+            return (
+              <MenuItem key={service.id} value={service.id}>
+                {service.service}
+              </MenuItem>
+            );
+          })}
+        </Select>
+
       <div>
 
         <input 

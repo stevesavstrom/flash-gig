@@ -1,7 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './RegisterForm.css';
+
+// Material-UI
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Box from "@material-ui/core/Box";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+
+const useStyles = makeStyles({
+  button: {
+    width: "100px",
+    padding: "10px",
+    margin: "3px",
+  },
+  text: {
+    width: "90%",
+    margin: "3px",
+  },
+  box: {
+    margin: "30px",
+  },
+  select: {
+    width: "90%",
+  },
+});
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -13,9 +38,14 @@ function RegisterForm() {
   const [email, setEmail] = useState('');
   const [service, setService] = useState('');
   const [bio, setBio] = useState('');
-
   const errors = useSelector((store) => store.errors);
+  const serviceList = useSelector((store) => store.ServiceReducer);
+  const classes = useStyles();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: "FETCH_SERVICE" });
+  }, []);
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -136,6 +166,7 @@ function RegisterForm() {
           />
         </label>
       </div>
+
       <div>
         <label htmlFor="service">
           <input
@@ -149,6 +180,22 @@ function RegisterForm() {
           />
         </label>
       </div>
+
+      {/* <Select
+          className={classes.select}
+          value={service}
+          onChange={(event) => setService(event.target.value)}
+          variant="outlined"
+        >
+          {serviceList.map((service) => {
+            return (
+              <MenuItem key={service.id} value={service.id}>
+                {service.service}
+              </MenuItem>
+            );
+          })}
+        </Select> */}
+
       <div>
         <label htmlFor="bio">
           <input
