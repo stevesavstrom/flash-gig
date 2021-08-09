@@ -50,6 +50,12 @@ function ApplicationDetails() {
 		window.location.reload(false);
 	}
 
+	const handleReject = (application) => {
+		console.log('*** This is handle reject payload', application);
+		dispatch({ type: 'REJECT_APPLICATION', payload: application })
+		window.location.reload(false);
+	}
+
 	console.log('***id', id);
 
 	return (
@@ -69,16 +75,6 @@ function ApplicationDetails() {
 		<p><strong>Status:</strong> {application && application.status} </p>
 
 		{/* Conditional rendering for confirm and reject buttons */}
-		{application.status === 'Confirmed' &&
-   		<Box textAlign='center' m={1}>
-		   <Button
-		   size="small" 
-		   style={{backgroundColor: '#172536', color: '#FFFFFF'}}>
-		   Reject
-		   </Button>
-		   </Box>
-      	}
-
 		{application.status === 'Applied' &&
    		<Box textAlign='center' m={1}>
 		   <Button 
@@ -88,7 +84,29 @@ function ApplicationDetails() {
 		   Confirm
 		   </Button>
 		   </Box>
-      	}
+		}
+
+		{application.status === 'Confirmed' &&
+   		<Box textAlign='center' m={1}>
+		   <Button 
+		   onClick={ () => handleReject(application)} 
+		   size="small" 
+		   style={{backgroundColor: '#172536', color: '#FFFFFF'}}>
+		   Cancel Booking
+		   </Button>
+		   </Box>
+		}
+
+		{application.status === 'Applied' &&
+		<Box textAlign='center' m={1}>
+		   <Button
+		   onClick={ () => handleReject(application)} 
+		   size="small" 
+		   style={{backgroundColor: '#172536', color: '#FFFFFF'}}>
+		   Reject
+		   </Button>
+		   </Box>
+		}
 
 
     	</div>

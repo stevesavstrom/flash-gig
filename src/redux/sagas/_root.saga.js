@@ -11,6 +11,7 @@ import jobDetailsSaga from './jobDetails.saga';
 import applicationDetailsSaga from './applicationDetails.saga';
 import applicationSaga from './application.saga';
 import confirmApplicationSaga from './confirmApplication.saga';
+import rejectApplicationSaga from './rejectApplication.saga';
 import serviceSaga from './service.saga';
 
 // rootSaga is the primary saga.
@@ -34,6 +35,7 @@ export default function* rootSaga() {
     applicationDetailsSaga(),
     applicationSaga(),
     confirmApplicationSaga(),
+    rejectApplicationSaga(),
     serviceSaga(),
   ]);
 }

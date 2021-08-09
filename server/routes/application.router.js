@@ -25,7 +25,8 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 	"user".bio
 	FROM application
 	JOIN "user" ON application.applicant_id = "user".id
-	WHERE application.job_id = $1;`;
+	WHERE application.job_id = $1
+	AND NOT application.status = 'Rejected';`;
 	pool
 	  .query(query, [req.params.id])
 	  .then((result) => {
