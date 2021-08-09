@@ -8,6 +8,7 @@ import JobDetailsReducer from './jobDetails.reducer';
 import ApplicationDetailsReducer from './applicationDetails.reducer';
 import ApplicationReducer from './application.reducer';
 import ServiceReducer from './service.reducer';
+import VenueReducer from './venue.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   ApplicationDetailsReducer,
   ApplicationReducer,
   ServiceReducer,
+  VenueReducer,
 });
 
 export default rootReducer;
