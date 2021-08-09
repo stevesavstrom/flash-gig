@@ -56,84 +56,105 @@ function ApplicationDetails() {
 		window.location.reload(false);
 	}
 
-	console.log('***id', id);
+	console.log(id);
+	console.log(application);
 
 	return (
-		<div className="applicationDetailsContainer">
-			<h1>Application Details</h1>
-			{applicationDetails.length < 1 &&
-			<p>Sorry! You have do not have any applicants for this job yet. Check back later!</p>
-			}
-			{applicationDetails.length >= 1 &&
-			<p>You have {applicationDetails.length} applicants for this job</p>
-			}
-		{applicationDetails.map((application, index) => {
-    	return <div className="applicationDetailsCard" key={index}>
-		<div className="applicationItem">
-		<div className="buttonGroup">
-      <LinkedCameraOutlinedIcon className="icon" style={{ fontSize: 50, color: '#172536'}} />
-      </div>
-		<h3>New Application from {application && application.first_name} {application && application.last_name} </h3>
-    	<p><strong>Application ID:</strong> {application && application.id} </p>
-		<p><strong>Job ID:</strong> {application && application.job_id} </p>
-    	<p><strong>Applicant ID:</strong> {application && application.applicant_id} </p>
-		<p><strong>Message:</strong> {application && application.message} </p>
-		<p><strong>Status:</strong> {application && application.status} </p>
+    <div className="applicationDetailsContainer">
+      <h1>Application Details</h1>
+      {applicationDetails.length < 1 && (
+        <p>
+          Sorry! You have do not have any applicants for this job yet. Check
+          back later!
+        </p>
+      )}
+      {applicationDetails.length >= 1 && (
+        <p>You have {applicationDetails.length} applicants for this job</p>
+      )}
+      {applicationDetails.map((application, index) => {
+        return (
+          <div className="applicationDetailsCard" key={index}>
+            <div className="applicationItem">
+              <div className="buttonGroup">
+                <LinkedCameraOutlinedIcon
+                  className="icon"
+                  style={{ fontSize: 50, color: "#172536" }}
+                />
+              </div>
+              <h3>
+                New Application from {application && application.first_name}{" "}
+                {application && application.last_name}{" "}
+              </h3>
+              <p>
+                <strong>Application ID:</strong> {application && application.id}{" "}
+              </p>
+              <p>
+                <strong>Job ID:</strong> {application && application.job_id}{" "}
+              </p>
+              <p>
+                <strong>Applicant ID:</strong>{" "}
+                {application && application.applicant_id}{" "}
+              </p>
+              <p>
+                <strong>Message:</strong> {application && application.message}{" "}
+              </p>
+              <p>
+                <strong>Status:</strong> {application && application.status}{" "}
+              </p>
 
-		{/* Conditional rendering for confirm and reject buttons */}
-		{application.status === 'Applied' &&
-   		<Box textAlign='center' m={1}>
-		   <Button 
-		   onClick={ () => handleConfirm(application)} 
-		   size="small" 
-		   style={{backgroundColor: '#172536', color: '#FFFFFF'}}>
-		   Confirm
-		   </Button>
-		   </Box>
-		}
+              {/* Conditional rendering for confirm and reject buttons */}
+              {application.status === "Applied" && (
+                <Box textAlign="center" m={1}>
+                  <Button
+                    onClick={() => handleConfirm(application)}
+                    size="small"
+                    style={{ backgroundColor: "#172536", color: "#FFFFFF" }}
+                  >
+                    Confirm
+                  </Button>
+                </Box>
+              )}
+              {application.status === "Applied" && (
+                <Box textAlign="center" m={1}>
+                  <Button
+                    onClick={() => handleReject(application)}
+                    size="small"
+                    style={{ backgroundColor: "#172536", color: "#FFFFFF" }}
+                  >
+                    Reject
+                  </Button>
+                </Box>
+              )}
 
-		{application.status === 'Confirmed' &&
-   		<Box textAlign='center' m={1}>
-		   <Button 
-		   onClick={ () => handleReject(application)} 
-		   size="small" 
-		   style={{backgroundColor: '#172536', color: '#FFFFFF'}}>
-		   Cancel Booking
-		   </Button>
-		   </Box>
-		}
-
-		{application.status === 'Applied' &&
-		<Box textAlign='center' m={1}>
-		   <Button
-		   onClick={ () => handleReject(application)} 
-		   size="small" 
-		   style={{backgroundColor: '#172536', color: '#FFFFFF'}}>
-		   Reject
-		   </Button>
-		   </Box>
-		}
-
-
-    	</div>
-		</div>
+              {application.status === "Confirmed" && (
+                <Box textAlign="center" m={1}>
+                  <Button
+                    onClick={() => handleReject(application)}
+                    size="small"
+                    style={{ backgroundColor: "#172536", color: "#FFFFFF" }}
+                  >
+                    Reject
+                  </Button>
+                </Box>
+              )}
+            </div>
+          </div>
+        );
       })}
-		{/* <button className="applicationDetailsButton" onClick={handleBack}>
-          Back
-        </button> */}
-
-		<Box textAlign='center' m={3}>
-		<Button 
-		onClick={handleBack}
-		size="medium" 
-		style={{backgroundColor: '#172536', color: '#FFFFFF'}}
-		className="applicationDetailsButton">
+   
+      <Box textAlign="center" m={3}>
+        <Button
+          onClick={handleBack}
+          size="medium"
+          style={{ backgroundColor: "#172536", color: "#FFFFFF" }}
+          className="applicationDetailsButton"
+        >
           Back to Profile
         </Button>
-		</Box>
+      </Box>
+    </div>
 
-		</div>
-	)
+  );
 }
 
 export default ApplicationDetails;
