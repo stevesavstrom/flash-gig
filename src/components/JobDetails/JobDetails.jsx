@@ -74,8 +74,9 @@ function JobDetails() {
       <div className="textField">
           <TextField
             className="jobInput"
-            id="outlined-basic"
-            label="Message"
+            id="outlined-multiline-static"
+            label="Write a message and then apply!"
+			multiline rows={5}
             variant="outlined"
             type="text"
             name="message"
@@ -91,7 +92,7 @@ function JobDetails() {
         className="btn" 
         type="submit" 
         name="submit" 
-        value="Post" 
+        value="Apply" 
         />
       </div>
     </form>
