@@ -47,6 +47,7 @@ function ApplicationDetails() {
 	const handleConfirm = (application) => {
 		console.log('*** This is handle application payload', application);
 		dispatch({ type: 'CONFIRM_APPLICATION', payload: application })
+		window.location.reload(false);
 	}
 
 	console.log('***id', id);
@@ -55,7 +56,7 @@ function ApplicationDetails() {
 		<div className="applicationDetailsContainer">
 			<h1>Application Details</h1>
 
-		{applicationDetails.map((application, index) => {
+		{applicationDetails && applicationDetails.map((application, index) => {
     	return <div className="applicationDetailsCard" key={index}>
 		<div className="applicationItem">
 		<div className="buttonGroup">
@@ -68,22 +69,29 @@ function ApplicationDetails() {
 		<p><strong>Message:</strong> {application && application.message} </p>
 		<p><strong>Status:</strong> {application && application.status} </p>
 
-		<Box textAlign='center' m={1}>
-		<Button 
-		onClick={ () => handleConfirm(application)} 
-		size="small" 
-		style={{backgroundColor: '#172536', color: '#FFFFFF'}}>
-		Confirm
-		</Button>
-		</Box>
 
-		<Box textAlign='center' m={1}>
-		<Button
-		size="small" 
-		style={{backgroundColor: '#172536', color: '#FFFFFF'}}>
-		Reject
-		</Button>
-		</Box>
+
+		{application.status === 'Confirmed' &&
+   		<Box textAlign='center' m={1}>
+		   <Button
+		   size="small" 
+		   style={{backgroundColor: '#172536', color: '#FFFFFF'}}>
+		   Reject
+		   </Button>
+		   </Box>
+      	}
+
+		{application.status === 'Applied' &&
+   		<Box textAlign='center' m={1}>
+		   <Button 
+		   onClick={ () => handleConfirm(application)} 
+		   size="small" 
+		   style={{backgroundColor: '#172536', color: '#FFFFFF'}}>
+		   Confirm
+		   </Button>
+		   </Box>
+      	}
+
 
     	</div>
 		</div>

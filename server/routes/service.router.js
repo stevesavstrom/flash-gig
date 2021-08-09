@@ -7,7 +7,7 @@ const {
 
 // GET all services from database
 // Used to display service options
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/', (req, res) => {
   const query = `SELECT * FROM service ORDER BY "service" ASC;`;
   pool.query(query)
     .then(result => {

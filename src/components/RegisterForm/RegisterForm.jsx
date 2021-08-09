@@ -9,6 +9,9 @@ import TextField from "@material-ui/core/TextField";
 import Box from "@material-ui/core/Box";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles({
   button: {
@@ -17,15 +20,20 @@ const useStyles = makeStyles({
     margin: "3px",
   },
   text: {
-    width: "90%",
+    width: "100%",
     margin: "3px",
   },
   box: {
     margin: "30px",
   },
   select: {
-    width: "90%",
+    width: "100%",
+    marginBottom: "7px",
   },
+  registrationInput: {
+    marginBottom: "7px",
+    width: "100%",
+  }
 });
 
 function RegisterForm() {
@@ -44,7 +52,7 @@ function RegisterForm() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: "FETCH_SERVICE" });
+    dispatch({ type: "GET_SERVICE" });
   }, []);
 
   const registerUser = (event) => {
@@ -77,11 +85,12 @@ function RegisterForm() {
       )}
       <div>
         <label htmlFor="username">
-          <input
-            className="registrationInput"
+          <TextField
+            className={classes.registrationInput}
             type="text"
             name="username"
-            placeholder="Username"
+            variant="outlined"
+            label="Username"
             value={username}
             required
             onChange={(event) => setUsername(event.target.value)}
@@ -90,11 +99,12 @@ function RegisterForm() {
       </div>
       <div>
         <label htmlFor="password">
-          <input
-            className="registrationInput"
+          <TextField
+            className={classes.registrationInput}
             type="password"
             name="password"
-            placeholder="Password"
+            variant="outlined"
+            label="Password"
             value={password}
             required
             onChange={(event) => setPassword(event.target.value)}
@@ -103,11 +113,12 @@ function RegisterForm() {
       </div>
       <div>
         <label htmlFor="firstName">
-          <input
-            className="registrationInput"
+          <TextField
+            className={classes.registrationInput}
             type="text"
             name="firstName"
-            placeholder="First Name"
+            variant="outlined"
+            label="First Name"
             value={firstName}
             required
             onChange={(event) => setFirstName(event.target.value)}
@@ -116,11 +127,12 @@ function RegisterForm() {
       </div>
       <div>
         <label htmlFor="lastName">
-          <input
-            className="registrationInput"
+          <TextField
+            className={classes.registrationInput}
             type="text"
             name="lastName"
-            placeholder="Last Name"
+            variant="outlined"
+            label="Last Name"
             value={lastName}
             required
             onChange={(event) => setLastName(event.target.value)}
@@ -129,11 +141,12 @@ function RegisterForm() {
       </div>
       <div>
         <label htmlFor="city">
-          <input
-            className="registrationInput"
+          <TextField
+            className={classes.registrationInput}
             type="text"
             name="city"
-            placeholder="City"
+            variant="outlined"
+            label="City"
             value={city}
             required
             onChange={(event) => setCity(event.target.value)}
@@ -142,11 +155,12 @@ function RegisterForm() {
       </div>
       <div>
         <label htmlFor="state">
-          <input
-            className="registrationInput"
+          <TextField
+            className={classes.registrationInput}
             type="text"
             name="state"
-            placeholder="State"
+            variant="outlined"
+            label="State"
             value={state}
             required
             onChange={(event) => setState(event.target.value)}
@@ -155,11 +169,12 @@ function RegisterForm() {
       </div>
       <div>
         <label htmlFor="email">
-          <input
-            className="registrationInput"
+          <TextField
+            className={classes.registrationInput}
             type="text"
             name="email"
-            placeholder="Email"
+            variant="outlined"
+            label="Email"
             value={email}
             required
             onChange={(event) => setEmail(event.target.value)}
@@ -167,7 +182,7 @@ function RegisterForm() {
         </label>
       </div>
 
-      <div>
+      {/* <div>
         <label htmlFor="service">
           <input
             className="registrationInput"
@@ -179,11 +194,16 @@ function RegisterForm() {
             onChange={(event) => setService(event.target.value)}
           />
         </label>
-      </div>
-
-      {/* <Select
+      </div> */}
+      <FormControl className={classes.select}>
+<InputLabel htmlFor="service-native-simple">Service</InputLabel>
+      <Select
           className={classes.select}
           value={service}
+          inputProps={{
+            name: 'age',
+            id: 'service-native-simple',
+          }}
           onChange={(event) => setService(event.target.value)}
           variant="outlined"
         >
@@ -194,22 +214,24 @@ function RegisterForm() {
               </MenuItem>
             );
           })}
-        </Select> */}
+        </Select>
+        </FormControl>
+
 
       <div>
         <label htmlFor="bio">
-          <input
-            className="registrationInput"
+          <TextField
+            className={classes.registrationInput}
             type="text"
             name="bio"
-            placeholder="Bio (optional)"
+            variant="outlined"
+            placeholder="Tell a little about yourself"
             value={bio}
             required
             onChange={(event) => setBio(event.target.value)}
           />
         </label>
-      </div>
-      
+      </div> 
       <div>
         <input className="btn" type="submit" name="submit" value="Register" />
       </div>
