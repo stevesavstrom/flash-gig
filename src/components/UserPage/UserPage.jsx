@@ -10,6 +10,28 @@ import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import CameraAltOutlinedIcon from '@material-ui/icons/CameraAltOutlined';
 import AssignmentTurnedInOutlinedIcon from '@material-ui/icons/AssignmentTurnedInOutlined';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import { makeStyles } from '@material-ui/core/styles';
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
 
 function UserPage() {
   const dispatch = useDispatch();
@@ -17,6 +39,22 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   const userJobItem = useSelector((store) => store.UserJobReducer);
   const userApplicationItem = useSelector((store) => store.UserApplicationReducer);
+
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
 
   // Star rating widget
   const [value, setValue] = React.useState(5);
@@ -38,6 +76,7 @@ function UserPage() {
   };
 
   const handleDelete = (deleteItem) => {
+    handleClick();
     console.log(`Delete item`, deleteItem);
     dispatch({ type: 'DELETE_JOB', payload: deleteItem })
   }
@@ -60,27 +99,51 @@ function UserPage() {
       {/* <div className="userJobBoardContainer"> */}
       <Typography className="postedJobsHeader" variant="h5" gutterBottom>My Posted Jobs</Typography>
       {userJobItem.map((job, index) => {
-       return <div className="userJobCard" key={index}>
-      <div className="jobItem">
-      <div className="buttonGroup">
-      <CameraAltOutlinedIcon className="icon" style={{ fontSize: 70, color: '#172536'}} />
-      </div>
-      <h3>{job.headline}</h3>
-      {/* <p><strong>ID:</strong> {job.id} </p> */}
-			<p><strong>Date:</strong> {job.date} </p>
-      <p><strong>Venue:</strong> {job.venue} </p>
-			<p><strong>Hours:</strong> {job.hours} </p>
-			<p><strong>Pay:</strong> ${job.pay} </p>
-			<p><strong>Service Needed:</strong> {job.service} </p>
-      <div className="buttonGroup">
-      <button className="userJobButton" onClick={() => handleApplicationDetails(job)}>Applicants</button>
-      <button className="userJobButton" onClick={ () => handleDelete(job.id)}>Delete</button>
-      <button className="userJobButton">Edit</button>
-      </div>
-      </div>
-		</div>
+       return (
+         <div className="userJobCard" key={index}>
+           <div className="jobItem">
+             <div className="buttonGroup">
+               <CameraAltOutlinedIcon
+                 className="icon"
+                 style={{ fontSize: 70, color: "#172536" }}
+               />
+             </div>
+             <h3>{job.headline}</h3>
+             {/* <p><strong>ID:</strong> {job.id} </p> */}
+             <p>
+               <strong>Date:</strong> {job.date}{" "}
+             </p>
+             <p>
+               <strong>Venue:</strong> {job.venue}{" "}
+             </p>
+             <p>
+               <strong>Hours:</strong> {job.hours}{" "}
+             </p>
+             <p>
+               <strong>Pay:</strong> ${job.pay}{" "}
+             </p>
+             <p>
+               <strong>Service Needed:</strong> {job.service}{" "}
+             </p>
+             <div className="buttonGroup">
+               <button
+                 className="userJobButton"
+                 onClick={() => handleApplicationDetails(job)}
+               >
+                 Applicants
+               </button>
+
+               <button className="userJobButton" onClick={ () => handleDelete(job.id)}>
+              Delete
+              </button>
+
+               {/* <button className="userJobButton" onClick={ () => handleDelete(job.id)}>Delete</button> */}
+               <button className="userJobButton">Edit</button>
+             </div>
+           </div>
+         </div>
+       );
       })}
-      {/* </div> */}
 
       {/* Section: Jobs user has applied for */}
       <Typography className="postedJobsHeader" variant="h5" gutterBottom>Jobs I Applied For</Typography>
@@ -100,12 +163,43 @@ function UserPage() {
       </div>
 		</div>
       })}
-      <LogOutButton className="logoutButton" />
-      
-    </div>
 
+      <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+      <Alert onClose={handleClose} severity="warning">
+        Deleted job!
+      </Alert>
+      </Snackbar>
+
+    </div>
   );
 }
 
 // this allows us to use <App /> in index.js
 export default UserPage;
+
+
+{/* <Dialog
+  open={open}
+  onClose={handleClose}
+  aria-labelledby="alert-dialog-title"
+  aria-describedby="alert-dialog-description"
+>
+  <DialogTitle id="alert-dialog-title">
+    {"Are you sure you want to delete this job?"}
+  </DialogTitle>
+  <DialogContent>
+    <DialogContentText id="alert-dialog-description">
+      Deleting this job will permanently remove it from your jobs list.
+    </DialogContentText>
+  </DialogContent>
+  <DialogActions>
+    <Button onClick={handleClose} color="primary">
+      No
+    </Button>
+    <Button onClick={() => handleDelete(job.id)} color="primary" autoFocus>
+      Yes
+    </Button>
+  </DialogActions>
+</Dialog>; */}
+
+

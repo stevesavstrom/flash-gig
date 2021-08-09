@@ -101,6 +101,11 @@ function ApplicationDetails() {
               <p>
                 <strong>Status:</strong> {application && application.status}{" "}
               </p>
+              {application.status === "Confirmed" && (
+              <p>
+                You're confirmed to work with {application && application.first_name}! <strong>Reach out by email to discuss details:</strong> {application && application.email}{" "}
+              </p>
+              )}
 
               {/* Conditional rendering for confirm and reject buttons */}
               {application.status === "Applied" && (

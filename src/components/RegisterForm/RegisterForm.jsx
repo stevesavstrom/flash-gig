@@ -196,12 +196,12 @@ function RegisterForm() {
         </label>
       </div> */}
       <FormControl className={classes.select}>
-<InputLabel htmlFor="service-native-simple">Service</InputLabel>
+      <InputLabel htmlFor="service-native-simple">Service</InputLabel>
       <Select
           className={classes.select}
           value={service}
           inputProps={{
-            name: 'age',
+            name: 'service',
             id: 'service-native-simple',
           }}
           onChange={(event) => setService(event.target.value)}
@@ -209,7 +209,7 @@ function RegisterForm() {
         >
           {serviceList.map((service) => {
             return (
-              <MenuItem key={service.id} value={service.id}>
+              <MenuItem key={service.id} value={service.service}>
                 {service.service}
               </MenuItem>
             );
