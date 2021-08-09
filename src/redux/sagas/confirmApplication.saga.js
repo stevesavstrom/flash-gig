@@ -7,7 +7,7 @@ function* confirmApplicationSaga (){
 
 function* confirmApplication (action){
 	try {
-		yield call(axios.put, `/api/application/${action.payload.id}`, action.payload);
+		yield call(axios.put, `/api/application/confirm/${action.payload.id}`, action.payload);
 		console.log(`What is in the PUT payload`, action.payload.id);
 		yield put({type: "GET_APPLICATION_DETAILS", payload: action.payload.id });
 	} catch(error){

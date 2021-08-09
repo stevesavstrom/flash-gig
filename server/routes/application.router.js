@@ -25,7 +25,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 	"user".bio
 	FROM application
 	JOIN "user" ON application.applicant_id = "user".id
-	WHERE application.job_id = $1`;
+	WHERE application.job_id = $1;`;
 	pool
 	  .query(query, [req.params.id])
 	  .then((result) => {
@@ -91,8 +91,8 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 	  });
   });
 
-// PUT to confirm application
-router.put("/:id", rejectUnauthenticated, (req, res) => {
+// PUT to CONFIRM application
+router.put("/confirm/:id", rejectUnauthenticated, (req, res) => {
 	console.log("What is being confirmed:", req.params.id);
 	const query = `UPDATE application SET "status"='Confirmed' WHERE id=$1;`;
 	pool
@@ -102,7 +102,23 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
 		res.sendStatus(201);
 	  })
 	  .catch((error) => {
-		console.log(`ERROR updating application with PUT: ${error}`);
+		console.log(`ERROR updating application with PUT to confirm: ${error}`);
+		res.sendStatus(500);
+	  });
+  });
+
+  // PUT to REJECT application
+router.put("/reject/:id", rejectUnauthenticated, (req, res) => {
+	console.log("What is being confirmed:", req.params.id);
+	const query = `UPDATE application SET "status"='Rejected' WHERE id=$1;`;
+	pool
+	  .query(query, [req.params.id])
+	  .then((result) => {
+		console.log("Updated application with PUT to reject", result);
+		res.sendStatus(201);
+	  })
+	  .catch((error) => {
+		console.log(`ERROR updating application with PUT to reject: ${error}`);
 		res.sendStatus(500);
 	  });
   });

@@ -55,8 +55,7 @@ function ApplicationDetails() {
 	return (
 		<div className="applicationDetailsContainer">
 			<h1>Application Details</h1>
-
-		{applicationDetails && applicationDetails.map((application, index) => {
+		{applicationDetails.map((application, index) => {
     	return <div className="applicationDetailsCard" key={index}>
 		<div className="applicationItem">
 		<div className="buttonGroup">
@@ -69,8 +68,7 @@ function ApplicationDetails() {
 		<p><strong>Message:</strong> {application && application.message} </p>
 		<p><strong>Status:</strong> {application && application.status} </p>
 
-
-
+		{/* Conditional rendering for confirm and reject buttons */}
 		{application.status === 'Confirmed' &&
    		<Box textAlign='center' m={1}>
 		   <Button
