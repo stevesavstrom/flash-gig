@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const jobRouter = require('./routes/job.router');
 const applicationRouter = require('./routes/application.router');
 const serviceRouter = require('./routes/service.router');
+const venueRouter = require('./routes/venue.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/api/job', jobRouter);
 app.use('/api/application', applicationRouter);
 app.use('/api/service', serviceRouter);
+app.use('/api/venue', venueRouter);
 
 // Serve static files
 app.use(express.static('build'));
