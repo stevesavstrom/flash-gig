@@ -4,6 +4,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
 
 // Material-UI
+//
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -26,6 +27,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import SearchIcon from '@material-ui/icons/Search';
 import InfoIcon from '@material-ui/icons/Info';
 import PostAddIcon from '@material-ui/icons/PostAdd';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 
 import './AppBar.css';
@@ -194,6 +196,11 @@ if (user.id != null) {
             <ListItem button>
               <ListItemIcon><InfoIcon /></ListItemIcon>
               <Link className="drawerLink" to="/about">About</Link>
+              <ListItemText/>
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon><AccountCircleIcon /></ListItemIcon>
+              <Link className="drawerLink" to="/">Edit Profile</Link>
               <ListItemText/>
             </ListItem>
         </List>
