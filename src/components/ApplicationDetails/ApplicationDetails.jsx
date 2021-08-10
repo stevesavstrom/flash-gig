@@ -7,7 +7,7 @@ import "./ApplicationDetails.css";
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import LinkedCameraOutlinedIcon from '@material-ui/icons/LinkedCameraOutlined';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
@@ -15,6 +15,36 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
+import Badge from '@material-ui/core/Badge';
+
+const StyledBadge = withStyles((theme) => ({
+  badge: {
+    backgroundColor: '#44b700',
+    color: '#44b700',
+    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+    '&::after': {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      borderRadius: '50%',
+      animation: '$ripple 1.2s infinite ease-in-out',
+      border: '1px solid currentColor',
+      content: '""',
+    },
+  },
+  '@keyframes ripple': {
+    '0%': {
+      transform: 'scale(.8)',
+      opacity: 1,
+    },
+    '100%': {
+      transform: 'scale(2.4)',
+      opacity: 0,
+    },
+  },
+}))(Badge);
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -93,14 +123,39 @@ function ApplicationDetails() {
           <div className="applicationDetailsCard" key={index}>
             <List className={classes.root}>
               <ListItem alignItems="flex-start">
+              {application.status === "Confirmed" && (
                 <ListItemAvatar>
-                  <Avatar
-                    alt="Remy Sharp"
-                    src={application && application.photo}
-                  />
+                  <StyledBadge
+                    overlap="circular"
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "right",
+                    }}
+                    variant="dot"
+                  >
+                    <Avatar
+                      alt="Remy Sharp"
+                      src={application && application.photo}
+                    />
+                  </StyledBadge>
                 </ListItemAvatar>
+              )}
+              {application.status === "Applied" && (
+                <ListItemAvatar>
+                    <Avatar
+                      alt="Remy Sharp"
+                      src={application && application.photo}
+                    />
+                </ListItemAvatar>
+              )}
                 <ListItemText
                   // primary="Application"
+                  primary={
+                    <p>
+                      <strong>Status:</strong>{" "}
+                      {application && application.status}{" "}
+                    </p>
+                  }
                   secondary={
                     <React.Fragment>
                       <Typography
@@ -110,14 +165,12 @@ function ApplicationDetails() {
                         color="textPrimary"
                       >
                         <strong>
-                          New Application from {application && application.first_name}{" "}
-                          {application && application.last_name}:{" "}
-                        </strong>{" "}<br></br>
+                          New Application from{" "}
+                          {application && application.first_name}{" "}
+                          {application && application.last_name}!{" "}
+                        </strong>{" "}
+                        <br></br>
                         {application && application.message}
-                        <p>
-                          <strong>Status:</strong>{" "}
-                          {application && application.status}{" "}
-                        </p>
                       </Typography>
                     </React.Fragment>
                   }

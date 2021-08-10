@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Map from '../GoogleMap/GoogleMap';
 import MapContainer from '../MapContainer/MapContainer';
 import './JobBoard.css';
 
@@ -14,7 +13,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
 
 const useStyles = makeStyles({
@@ -32,6 +30,7 @@ function JobBoard() {
   const history = useHistory();
   const jobItem = useSelector((store) => store.JobReducer);
 
+  // Loads and displays all jobs in job table
   useEffect(() => {
     dispatch({
       type: "GET_JOB",
@@ -39,6 +38,7 @@ function JobBoard() {
     console.log(jobItem);
   }, []);
 
+  // View Job Details by Job ID on click
   const handleDetails = (details) => {
     console.log('Details', details);
     dispatch({ type: "GET_JOB_DETAILS", payload: details.id });
@@ -46,18 +46,21 @@ function JobBoard() {
   };
 
   // Converts Date to MM/DD/YYY format
-  const date = new Date(`${jobItem[0].date}`);	
-	const formattedDate = `${(date.getMonth() + 1)}/${date.getDate()}/${date.getFullYear()}`;
-	console.log(formattedDate);
+  // const date = new Date(`${jobItem && jobItem[0].date}`);	
+	// const formattedDate = `${(date.getMonth() + 1)}/${date.getDate()}/${date.getFullYear()}`;
+	// console.log(formattedDate);
 
   return (
     <div className="jobBoardContainer">
+      
+      {/* Map */}
       <MapContainer />
-			{/* <Map /> */}
+
+      {/* Job Board Header */}
       <h2 className="jobBoardHeader">Available Jobs</h2>
 
+      {/* Job List */}
       {jobItem.map((job, index) => {
-
        return (<div className="jobCard" key={index}>
        <Card className={classes.root}>
         <CardActionArea>
@@ -68,7 +71,7 @@ function JobBoard() {
           />
           <CardContent>
           <Typography variant="body1" color="textSecondary" component="p">
-            {job.service} | {formattedDate} | ${job.pay}
+            {job.service} | July 1, 2022 | ${job.pay}
             </Typography>
             <Typography gutterBottom variant="h6" component="h2">
             {job.venue} 
@@ -95,17 +98,3 @@ function JobBoard() {
 }
 
 export default JobBoard;
-
-{/* <div className="jobCard" key={index}>
-			<h2 className="jobBoardHeadline">{job.headline} </h2>
-      <img className="jobBoardImage" src={job.image}></img>
-			<p><strong>Date:</strong> {job.date} </p>
-      <p><strong>Venue:</strong> {job.venue} </p>
-			<p><strong>Hours:</strong> {job.hours} </p>
-			<p><strong>Pay:</strong> ${job.pay} </p>
-			<p><strong>Service Needed:</strong> {job.service} </p>
-      <p>Posted by {job.first_name} {job.last_name}</p>
-      
-      {/* <p><strong>Venue Description:</strong> {job.description} </p> */}
-		// 	<button className="detailsButton" onClick={() => handleDetails(job)}>More</button>
-		// </div> */}
