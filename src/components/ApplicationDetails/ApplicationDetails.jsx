@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { makeStyles } from '@material-ui/core/styles';
 import "./ApplicationDetails.css";
 
 // Material-UI
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import LinkedCameraOutlinedIcon from '@material-ui/icons/LinkedCameraOutlined';
-
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -22,6 +28,14 @@ const useStyles = makeStyles((theme) => ({
 	extendedIcon: {
 	  marginRight: theme.spacing(1),
 	},
+  list: {
+    width: '100%',
+    maxWidth: '36ch',
+    backgroundColor: theme.palette.background.paper,
+  },
+  inline: {
+    display: 'inline',
+  },
   }));
 
 function ApplicationDetails() {
@@ -61,24 +75,116 @@ function ApplicationDetails() {
 
 	return (
     <div className="applicationDetailsContainer">
-
       <div className="applicationDetailsHeader">
-      <h1>Application Details</h1>
-      {applicationDetails.length < 1 && (
-        <h3>
-          Sorry! You have do not have any applicants for this job yet. Check
-          back later!
-        </h3>
-      )}
-      {applicationDetails.length >= 1 && (
-        <h3>You have {applicationDetails.length} applicants for this job</h3>
-      )}
+        <h1>Application Details</h1>
+        {applicationDetails.length < 1 && (
+          <h3>
+            Sorry! You have do not have any applicants for this job yet. Check
+            back later!
+          </h3>
+        )}
+        {applicationDetails.length >= 1 && (
+          <h3>You have {applicationDetails.length} applicants for this job</h3>
+        )}
       </div>
 
       {applicationDetails.map((application, index) => {
         return (
           <div className="applicationDetailsCard" key={index}>
-            <div className="applicationItem">
+            <List className={classes.root}>
+              <ListItem alignItems="flex-start">
+                <ListItemAvatar>
+                  <Avatar
+                    alt="Remy Sharp"
+                    src={application && application.photo}
+                  />
+                </ListItemAvatar>
+                <ListItemText
+                  // primary="Application"
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        component="span"
+                        variant="body2"
+                        className={classes.inline}
+                        color="textPrimary"
+                      >
+                        <strong>
+                          New Application from {application && application.first_name}{" "}
+                          {application && application.last_name}:{" "}
+                        </strong>{" "}<br></br>
+                        {application && application.message}
+                        <p>
+                          <strong>Status:</strong>{" "}
+                          {application && application.status}{" "}
+                        </p>
+                      </Typography>
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+              <div className="buttonGroup">
+                {application.status === "Applied" && (
+                  <Box textAlign="center" m={1}>
+                    <Button
+                      onClick={() => handleConfirm(application)}
+                      size="small"
+                      style={{ backgroundColor: "#172536", color: "#FFFFFF" }}
+                    >
+                      Confirm
+                    </Button>
+                  </Box>
+                )}
+                {application.status === "Applied" && (
+                  <Box textAlign="center" m={1}>
+                    <Button
+                      onClick={() => handleReject(application)}
+                      size="small"
+                      style={{ backgroundColor: "#172536", color: "#FFFFFF" }}
+                    >
+                      Reject
+                    </Button>
+                  </Box>
+                )}
+
+                {application.status === "Confirmed" && (
+                  <Box textAlign="center" m={1}>
+                    <Button
+                      onClick={() => handleReject(application)}
+                      size="small"
+                      style={{ backgroundColor: "#172536", color: "#FFFFFF" }}
+                    >
+                      Reject
+                    </Button>
+                  </Box>
+                )}
+              </div>
+              <Divider variant="middle" component="li" />
+            </List>
+          </div>
+        );
+      })}
+
+      <Box textAlign="center" m={3}>
+        <Button
+          onClick={handleBack}
+          size="medium"
+          style={{ backgroundColor: "#172536", color: "#FFFFFF" }}
+          className="applicationDetailsButton"
+        >
+          Back to Profile
+        </Button>
+      </Box>
+    </div>
+  );
+}
+
+
+// This is the old card system for mapping through the applicants
+// It was replaced by the avatar list items above.
+// This is still an option if needed.
+
+{/* <div className="applicationItem">
               <div className="buttonGroup">
                 <LinkedCameraOutlinedIcon
                   className="icon"
@@ -106,13 +212,16 @@ function ApplicationDetails() {
                 <strong>Status:</strong> {application && application.status}{" "}
               </p>
               {application.status === "Confirmed" && (
-              <p>
-                You're confirmed to work with {application && application.first_name}! <strong>Reach out by email to discuss details:</strong> {application && application.email}{" "}
-              </p>
-              )}
+                <p>
+                  You're confirmed to work with{" "}
+                  {application && application.first_name}!{" "}
+                  <strong>Reach out by email to discuss details:</strong>{" "}
+                  {application && application.email}{" "}
+                </p>
+              )} */}
 
-              {/* Conditional rendering for confirm and reject buttons */}
-              {application.status === "Applied" && (
+            {/* Conditional rendering for confirm and reject buttons */}
+            {/* {application.status === "Applied" && (
                 <Box textAlign="center" m={1}>
                   <Button
                     onClick={() => handleConfirm(application)}
@@ -146,24 +255,6 @@ function ApplicationDetails() {
                   </Button>
                 </Box>
               )}
-            </div>
-          </div>
-        );
-      })}
-   
-      <Box textAlign="center" m={3}>
-        <Button
-          onClick={handleBack}
-          size="medium"
-          style={{ backgroundColor: "#172536", color: "#FFFFFF" }}
-          className="applicationDetailsButton"
-        >
-          Back to Profile
-        </Button>
-      </Box>
-    </div>
-
-  );
-}
+            </div> */}
 
 export default ApplicationDetails;

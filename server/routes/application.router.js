@@ -22,7 +22,8 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 	"user".city, 
 	"user".state, 
 	"user".email, 
-	"user".bio
+	"user".bio,
+	"user".photo
 	FROM application
 	JOIN "user" ON application.applicant_id = "user".id
 	WHERE application.job_id = $1
