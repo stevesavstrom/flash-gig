@@ -24,6 +24,13 @@ function JobDetails() {
 
 	const history = useHistory();
 
+	const event = new Date(1993, 6, 28, 14, 39, 7);
+	console.log(event.toDateString());
+
+	const date = new Date(`${jobDetails[0].date}`);	
+	const formattedDate = `${(date.getMonth() + 1)}/${date.getDate()}/${date.getFullYear()}`;
+	console.log(formattedDate);
+
 	const handleBack = (event) => {
     	event.preventDefault();
     	history.push(`/job`);
@@ -55,7 +62,7 @@ function JobDetails() {
 		<div className="detailsContainer">
 		<h4>{jobDetails && jobDetails[0].headline} </h4>
     	<img className="jobBoardImage" src={jobDetails && jobDetails[0].image}></img>
-		<p><strong>Date:</strong> {jobDetails && jobDetails[0].date} </p>
+		<p><strong>Date:</strong> {formattedDate} </p>
     	<p><strong>Venue:</strong> {jobDetails && jobDetails[0].venue} </p>
 		<p><strong>Hours:</strong> {jobDetails && jobDetails[0].hours} </p>
 		<p><strong>Pay:</strong> ${jobDetails && jobDetails[0].pay} </p>

@@ -19,6 +19,7 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
+import Chip from '@material-ui/core/Chip';
 
 // function Alert(props) {
 //   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -108,9 +109,12 @@ function UserPage() {
             <span>received</span>
           </li>
         </ul>
-        <Typography variant="h6" gutterBottom>
+        <Chip label={user.service} variant="outlined" icon={<CameraAltOutlinedIcon />} />
+        <Chip label={user.city} variant="outlined" />
+        <Chip label={user.state} variant="outlined" />
+        {/* <Typography variant="h6" gutterBottom>
           {user.service} based in {user.city}
-        </Typography>
+        </Typography> */}
         <Typography className="bioText" variant="subtitle1" gutterBottom>
           {user.bio}
         </Typography>
