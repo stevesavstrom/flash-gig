@@ -83,14 +83,12 @@
   font-size: 12px;
   outline: 0;
   cursor: pointer;
-  
 }
 
 .buttonGroup {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .bioText {
@@ -102,7 +100,6 @@
   font-size: 24px;
   color: #172536;
 }
-
 
 /* Card Stats */
 .card__info {
@@ -132,6 +129,7 @@
   font-weight: bold;
 }
 
+/* Green Avatar Badge */
 .ring-container {
   position: relative;
 }

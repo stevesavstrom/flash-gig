@@ -45,10 +45,16 @@ function JobBoard() {
     history.push(`details/${details.id}`);
   };
 
-  // Converts Date to MM/DD/YYY format
-  // const date = new Date(`${jobItem && jobItem[0].date}`);	
-	// const formattedDate = `${(date.getMonth() + 1)}/${date.getDate()}/${date.getFullYear()}`;
-	// console.log(formattedDate);
+	// Convert date to mm/dd/yyyy
+	function prettyDate(unformattedDate) {
+		const dateString = new Date(unformattedDate);
+		const year = dateString.getFullYear();
+		let month = (1 + dateString.getMonth()).toString() ;
+		let day = dateString.getDate().toString();
+		month = month.length === 1 ? '0' + month : month;
+		day = day.length === 1 ? '0' + day : day;
+		return month + '-' + day + '-' + year;
+	} //end prettyDate
 
   return (
     <div className="jobBoardContainer">
@@ -71,7 +77,7 @@ function JobBoard() {
           />
           <CardContent>
           <Typography variant="body1" color="textSecondary" component="p">
-            {job.service} | July 1, 2022 | ${job.pay}
+            {job.service} | {prettyDate(job.date)} | ${job.pay}
             </Typography>
             <Typography gutterBottom variant="h6" component="h2">
             {job.venue} 

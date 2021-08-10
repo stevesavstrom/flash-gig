@@ -16,14 +16,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
-
-// function Alert(props) {
-//   return <MuiAlert elevation={6} variant="filled" {...props} />;
-// }
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+// End Material-UI
 
 function UserPage() {
   const dispatch = useDispatch();
@@ -86,6 +81,7 @@ function UserPage() {
 
   return (
     <div className="profile">
+
       {/* User profile */}
       <div className="profileContainer">
         <h2 className="profileName">
@@ -96,9 +92,9 @@ function UserPage() {
         <img className="avatar" src={user.photo}></img>
 
         {/* Active Green Badge */}
-        <div class="ring-container">
-          <div class="ringring"></div>
-          <div class="circle"></div>
+        <div className="ring-container">
+          <div className="ringring"></div>
+          <div className="circle"></div>
         </div>
 
         {/* Star Rating */}
@@ -153,11 +149,18 @@ function UserPage() {
                 />
               </div>
               <h3>{job.headline}</h3>
+              <Chip
+          label={job.service}
+          variant="outlined"
+          icon={<CameraAltOutlinedIcon />}
+        />
+        <Chip label={job.venue} variant="outlined" />
+
               <p><strong>Date:</strong> {job.date}{" "}</p>
-              <p><strong>Venue:</strong> {job.venue}{" "}</p>
+              {/* <p><strong>Venue:</strong> {job.venue}{" "}</p> */}
               <p><strong>Hours:</strong> {job.hours}{" "}</p>
               <p><strong>Pay:</strong> ${job.pay}{" "}</p>
-              <p><strong>Service Needed:</strong> {job.service}{" "}</p>
+              {/* <p><strong>Service Needed:</strong> {job.service}{" "}</p> */}
 
               {/* Button Group */}
               <div className="buttonGroup">
