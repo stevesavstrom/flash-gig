@@ -79,10 +79,30 @@ function UserPage() {
     setOpen(false);
   }
 
+  // Convert date to mm/dd/yyyy
+	function prettyDate(unformattedDate) {
+		const dateString = new Date(unformattedDate);
+		const year = dateString.getFullYear();
+		let month = (1 + dateString.getMonth()).toString() ;
+		let day = dateString.getDate().toString();
+		month = month.length === 1 ? '0' + month : month;
+		day = day.length === 1 ? '0' + day : day;
+		return month + '-' + day + '-' + year;
+	} //end prettyDate
+
+  // Display today's date
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = mm + "/" + dd + "/" + yyyy;
+
   return (
     <div className="profile">
 
       {/* User profile */}
+      <p>Welcome Back, {user.first_name}! Today is {today} </p>
       <div className="profileContainer">
         <h2 className="profileName">
           {user.first_name} {user.last_name}
@@ -156,7 +176,7 @@ function UserPage() {
         />
         <Chip label={job.venue} variant="outlined" />
 
-              <p><strong>Date:</strong> {job.date}{" "}</p>
+              <p><strong>Date:</strong> {prettyDate(job.date)}{" "}</p>
               {/* <p><strong>Venue:</strong> {job.venue}{" "}</p> */}
               <p><strong>Hours:</strong> {job.hours}{" "}</p>
               <p><strong>Pay:</strong> ${job.pay}{" "}</p>
