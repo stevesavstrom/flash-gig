@@ -39,21 +39,7 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   const userJobItem = useSelector((store) => store.UserJobReducer);
   const userApplicationItem = useSelector((store) => store.UserApplicationReducer);
-
   const classes = useStyles();
-  // const [open, setOpen] = React.useState(false);
-
-  // const handleClick = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleClose = (event, reason) => {
-  //   if (reason === 'clickaway') {
-  //     return;
-  //   }
-
-  //   setOpen(false);
-  // };
 
   // Dialog Alert
     const [open, setOpen] = React.useState(false);
@@ -253,13 +239,6 @@ function UserPage() {
           </Button>
         </DialogActions>
       </Dialog>
-
-      {/* Alert to visually confirm deleting a job - needs to be outside map*/}
-      {/* <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
-      <Alert onClose={handleClose} severity="success">
-        Deleted job!
-      </Alert>
-      </Snackbar> */}
     </div>
   );
 }
