@@ -47,7 +47,7 @@ function JobBoard() {
     <div className="jobBoardContainer">
       <MapContainer />
 			{/* <Map /> */}
-      <h2>Available Jobs</h2>
+      <h2 className="jobBoardHeader">Available Jobs</h2>
 
       {jobItem.map((job, index) => {
 
@@ -57,11 +57,14 @@ function JobBoard() {
           <CardMedia
             className={classes.media}
             image={job.image}
-            title="Contemplative Reptile"
+            title="Job Card"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-            {job.venue}
+          <Typography variant="body1" color="textSecondary" component="p">
+            {job.service} | ${job.pay} | {job.hours} Hours
+            </Typography>
+            <Typography gutterBottom variant="h6" component="h2">
+            {job.venue} 
             </Typography>
             <Typography variant="body1" color="textSecondary" component="p">
             {job.headline}

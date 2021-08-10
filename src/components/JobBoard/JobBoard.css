@@ -1,5 +1,14 @@
-h2 {
+.jobBoardHeader {
   text-align: center;
+  color:#fff;
+  background-color: #172536;
+  padding: 10px;
+  font-weight: 400;
+}
+
+h2 {
+  text-align: left;
+
 }
 
 .jobCard {
@@ -10,7 +19,7 @@ h2 {
   padding: 3px;
   padding-left: 10px;
   padding-right: 10px;
-  width: 93%;
+  width: 95%;
   /* background-color: #ffffff; */
 }
 
