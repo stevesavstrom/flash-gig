@@ -61,16 +61,20 @@ function ApplicationDetails() {
 
 	return (
     <div className="applicationDetailsContainer">
+
+      <div className="applicationDetailsHeader">
       <h1>Application Details</h1>
       {applicationDetails.length < 1 && (
-        <p>
+        <h3>
           Sorry! You have do not have any applicants for this job yet. Check
           back later!
-        </p>
+        </h3>
       )}
       {applicationDetails.length >= 1 && (
-        <p>You have {applicationDetails.length} applicants for this job</p>
+        <h3>You have {applicationDetails.length} applicants for this job</h3>
       )}
+      </div>
+
       {applicationDetails.map((application, index) => {
         return (
           <div className="applicationDetailsCard" key={index}>

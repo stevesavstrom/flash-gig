@@ -82,13 +82,28 @@ function UserPage() {
 
   return (
     <div className="profile">
-    {/* Users profile */}
+
+    {/* User profile */}
     <div className="profileContainer">
       <h2>{user.first_name} {user.last_name}</h2>
       <img className="avatar" src={user.photo}></img>
-      <Box component="fieldset" mb={3} borderColor="transparent">
+      <Box component="fieldset" mb={1} borderColor="transparent">
         <Rating name="read-only" value={value} readOnly />
       </Box>
+      <ul class="card__info">
+      <li>
+        <span class="card__info__stats">{userJobItem.length}</span>
+        <span>posted</span>
+      </li>
+      <li>
+        <span class="card__info__stats">{userApplicationItem.length}</span>
+        <span>applied</span>
+      </li>
+      <li>
+        <span class="card__info__stats">20</span>
+        <span>received</span>
+      </li>
+    </ul>
       <Typography variant="h6" gutterBottom>{user.service} based in {user.city}</Typography>
       <Typography className="bioText" variant="subtitle1" gutterBottom>{user.bio}</Typography>
       {/* <Typography variant="h6" gutterBottom>Your ID is: {user.id}</Typography> */}
