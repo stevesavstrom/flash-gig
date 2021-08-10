@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import './UserPage.css';
 
 // Material-UI
+// Making a change for fun!
 import Typography from '@material-ui/core/Typography';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
