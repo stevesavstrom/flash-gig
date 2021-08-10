@@ -92,6 +92,10 @@ function UserPage() {
           {user.first_name} {user.last_name}
         </h2>
         <img className="avatar" src={user.photo}></img>
+        <div class="ring-container">
+    <div class="ringring"></div>
+    <div class="circle"></div>
+</div>
         <Box component="fieldset" mb={1} borderColor="transparent">
           <Rating name="read-only" value={value} readOnly />
         </Box>

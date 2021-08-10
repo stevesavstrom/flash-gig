@@ -131,3 +131,36 @@
   font-size: 1em;
   font-weight: bold;
 }
+
+.ring-container {
+  position: relative;
+}
+
+.circle {
+  width: 18px;
+  height: 18px;
+  background-color: #62bd19;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 12.5px;
+  right: 101px;
+  border: 2px solid white;
+}
+
+.ringring {
+  border: 3px solid #62bd19;
+  -webkit-border-radius: 100px;
+  height: 27px;
+  width: 27px;
+  position: absolute;
+  bottom: 8.5px;
+  right: 97px;
+  -webkit-animation: pulsate 1.5s ease-out;
+  -webkit-animation-iteration-count: infinite; 
+  opacity: 0.0
+}
+@-webkit-keyframes pulsate {
+  0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+  50% {opacity: 1.0;}
+  100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
+}
