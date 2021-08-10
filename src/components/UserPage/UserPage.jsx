@@ -85,7 +85,7 @@ function UserPage() {
 
     {/* User profile */}
     <div className="profileContainer">
-      <h2>{user.first_name} {user.last_name}</h2>
+      <h2 className="profileName">{user.first_name} {user.last_name}</h2>
       <img className="avatar" src={user.photo}></img>
       <Box component="fieldset" mb={1} borderColor="transparent">
         <Rating name="read-only" value={value} readOnly />
@@ -124,21 +124,11 @@ function UserPage() {
              </div>
              <h3>{job.headline}</h3>
              {/* <p><strong>ID:</strong> {job.id} </p> */}
-             <p>
-               <strong>Date:</strong> {job.date}{" "}
-             </p>
-             <p>
-               <strong>Venue:</strong> {job.venue}{" "}
-             </p>
-             <p>
-               <strong>Hours:</strong> {job.hours}{" "}
-             </p>
-             <p>
-               <strong>Pay:</strong> ${job.pay}{" "}
-             </p>
-             <p>
-               <strong>Service Needed:</strong> {job.service}{" "}
-             </p>
+             <p><strong>Date:</strong> {job.date}{" "}</p>
+             <p><strong>Venue:</strong> {job.venue}{" "}</p>
+             <p><strong>Hours:</strong> {job.hours}{" "}</p>
+             <p><strong>Pay:</strong> ${job.pay}{" "}</p>
+             <p><strong>Service Needed:</strong> {job.service}{" "}</p>
              <div className="buttonGroup">
                <button
                  className="userJobButton"
@@ -178,12 +168,12 @@ function UserPage() {
 		</div>
       })}
 
+      {/* Alert to visually confirm deleting a job - needs to be outside map*/}
       <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
       <Alert onClose={handleClose} severity="success">
         Deleted job!
       </Alert>
       </Snackbar>
-
     </div>
   );
 }
