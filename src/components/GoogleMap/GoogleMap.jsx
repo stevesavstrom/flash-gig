@@ -4,6 +4,7 @@ import {
   useJsApiLoader,
   Marker,
   InfoWindow,
+  LoadScript,
 } from "@react-google-maps/api";
 
 require("dotenv").config();
@@ -16,9 +17,8 @@ const containerStyle = {
   };
 
 const center = {
-	lat: 45.03876579505122,
-	lng: -91.43176878135743
-  };
+    lat: 44.978333, lng: -93.263596
+}
 
 const array = [
   {

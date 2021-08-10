@@ -18,7 +18,8 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   job.pay, 
   venue.venue, 
   venue.description, 
-  venue.image, 
+  venue.image,
+  venue.location, 
   service.service
   FROM job
   JOIN venue ON venue.id = job.venue_id

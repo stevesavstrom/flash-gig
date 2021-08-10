@@ -20,6 +20,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Map from '../GoogleMap/GoogleMap';
+import MapContainer from '../MapContainer/MapContainer';
 import JobBoard from '../JobBoard/JobBoard';
 import PersistentDrawerLeft from '../AppBar/AppBar';
 import JobForm from '../JobForm/JobForm';
@@ -118,6 +119,16 @@ function App() {
             path="/map"
           >
             <Map />
+          </Route>
+
+          <Route
+            // with authRedirect:
+            // - if logged in, redirects to "/user"
+            // - else shows LandingPage at "/home"
+            exact
+            path="/mapcontainer"
+          >
+            <MapContainer />
           </Route>
 
           <ProtectedRoute

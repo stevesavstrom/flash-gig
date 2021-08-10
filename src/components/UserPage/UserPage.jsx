@@ -55,7 +55,6 @@ function UserPage() {
     setOpen(false);
   };
 
-
   // Star rating widget
   const [value, setValue] = React.useState(5);
 
@@ -164,8 +163,8 @@ function UserPage() {
 		</div>
       })}
 
-      <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-      <Alert onClose={handleClose} severity="warning">
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+      <Alert onClose={handleClose} severity="success">
         Deleted job!
       </Alert>
       </Snackbar>
@@ -178,28 +177,30 @@ function UserPage() {
 export default UserPage;
 
 
-{/* <Dialog
-  open={open}
-  onClose={handleClose}
-  aria-labelledby="alert-dialog-title"
-  aria-describedby="alert-dialog-description"
+{/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+Open alert dialog
+</Button>
+<Dialog
+open={open}
+onClose={handleClose}
+aria-labelledby="alert-dialog-title"
+aria-describedby="alert-dialog-description"
 >
-  <DialogTitle id="alert-dialog-title">
-    {"Are you sure you want to delete this job?"}
-  </DialogTitle>
-  <DialogContent>
-    <DialogContentText id="alert-dialog-description">
-      Deleting this job will permanently remove it from your jobs list.
-    </DialogContentText>
-  </DialogContent>
-  <DialogActions>
-    <Button onClick={handleClose} color="primary">
-      No
-    </Button>
-    <Button onClick={() => handleDelete(job.id)} color="primary" autoFocus>
-      Yes
-    </Button>
-  </DialogActions>
-</Dialog>; */}
+<DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+<DialogContent>
+  <DialogContentText id="alert-dialog-description">
+    Let Google help apps determine location. This means sending anonymous location data to
+    Google, even when no apps are running.
+  </DialogContentText>
+</DialogContent>
+<DialogActions>
+  <Button onClick={handleClose} color="primary">
+    Disagree
+  </Button>
+  <Button onClick={handleClose} color="primary" autoFocus>
+    Agree
+  </Button>
+</DialogActions>
+</Dialog> */}
 
 

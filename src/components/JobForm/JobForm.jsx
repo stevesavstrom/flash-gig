@@ -20,11 +20,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   select: {
+    marginBottom: "7px",
     width: "100%",
   },
   label: {
     marginLeft: "14px",
   },
+  jobPostInput: {
+    marginBottom: "7px",
+    width: "100%",
+  }
 }));
 
 function JobForm() {
@@ -75,7 +80,7 @@ function JobForm() {
       {/* Headline Input */}
       <div className="textField">
         <TextField
-          className="jobInput"
+          className={classes.jobPostInput}
           id="outlined-basic"
           label="Headline"
           variant="outlined"
@@ -90,7 +95,7 @@ function JobForm() {
       {/* Date input */}
       <div className="textField">
         <TextField
-          className="jobInput"
+          className={classes.jobPostInput}
           id="outlined-basic"
           label="Date"
           variant="outlined"
@@ -127,7 +132,7 @@ function JobForm() {
       <div className="textField">
         <label htmlFor="hours">
           <TextField
-            className="jobInput"
+            className={classes.jobPostInput}
             id="outlined-basic"
             label="Hours"
             variant="outlined"
@@ -144,7 +149,7 @@ function JobForm() {
       <div className="textField">
         <label htmlFor="pay">
           <TextField
-            className="jobInput"
+            className={classes.jobPostInput}
             id="outlined-basic"
             label="Pay"
             variant="outlined"
