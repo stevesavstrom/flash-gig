@@ -91,14 +91,22 @@ function UserPage() {
         <h2 className="profileName">
           {user.first_name} {user.last_name}
         </h2>
+
+        {/* User Avatar */}
         <img className="avatar" src={user.photo}></img>
+
+        {/* Active Green Badge */}
         <div class="ring-container">
-    <div class="ringring"></div>
-    <div class="circle"></div>
-</div>
+          <div class="ringring"></div>
+          <div class="circle"></div>
+        </div>
+
+        {/* Star Rating */}
         <Box component="fieldset" mb={1} borderColor="transparent">
           <Rating name="read-only" value={value} readOnly />
         </Box>
+
+        {/* User Stats Card */}
         <ul class="card__info">
           <li>
             <span class="card__info__stats">{userJobItem.length}</span>
@@ -113,16 +121,20 @@ function UserPage() {
             <span>received</span>
           </li>
         </ul>
-        <Chip label={user.service} variant="outlined" icon={<CameraAltOutlinedIcon />} />
+
+        {/* Chip Group */}
+        <Chip
+          label={user.service}
+          variant="outlined"
+          icon={<CameraAltOutlinedIcon />}
+        />
         <Chip label={user.city} variant="outlined" />
         <Chip label={user.state} variant="outlined" />
-        {/* <Typography variant="h6" gutterBottom>
-          {user.service} based in {user.city}
-        </Typography> */}
+
+        {/* User Bio */}
         <Typography className="bioText" variant="subtitle1" gutterBottom>
           {user.bio}
         </Typography>
-        {/* <Typography variant="h6" gutterBottom>Your ID is: {user.id}</Typography> */}
       </div>
 
       {/* Section: Users' posted jobs */}
@@ -141,22 +153,13 @@ function UserPage() {
                 />
               </div>
               <h3>{job.headline}</h3>
-              {/* <p><strong>ID:</strong> {job.id} </p> */}
-              <p>
-                <strong>Date:</strong> {job.date}{" "}
-              </p>
-              <p>
-                <strong>Venue:</strong> {job.venue}{" "}
-              </p>
-              <p>
-                <strong>Hours:</strong> {job.hours}{" "}
-              </p>
-              <p>
-                <strong>Pay:</strong> ${job.pay}{" "}
-              </p>
-              <p>
-                <strong>Service Needed:</strong> {job.service}{" "}
-              </p>
+              <p><strong>Date:</strong> {job.date}{" "}</p>
+              <p><strong>Venue:</strong> {job.venue}{" "}</p>
+              <p><strong>Hours:</strong> {job.hours}{" "}</p>
+              <p><strong>Pay:</strong> ${job.pay}{" "}</p>
+              <p><strong>Service Needed:</strong> {job.service}{" "}</p>
+
+              {/* Button Group */}
               <div className="buttonGroup">
                 <button
                   className="userJobButton"
@@ -174,11 +177,6 @@ function UserPage() {
                 >
                   Delete
                 </button>
-                {/* <button className="userJobButton" onClick={ () => handleDelete(job.id)}>
-              Delete
-              </button> */}
-
-                {/* <button className="userJobButton" onClick={ () => handleDelete(job.id)}>Delete</button> */}
                 <button className="userJobButton">Edit</button>
               </div>
             </div>
@@ -222,6 +220,8 @@ function UserPage() {
         );
       })}
 
+      {/* Dialog Component Exists Outside .map */}
+      {/* Dialog component uses state to capture job id -- review above */}
       <Dialog
         open={open}
         onClose={handleClose}
