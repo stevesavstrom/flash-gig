@@ -14,6 +14,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
 
 const useStyles = makeStyles({
   root: {
@@ -43,6 +45,11 @@ function JobBoard() {
     history.push(`details/${details.id}`);
   };
 
+  // Converts Date to MM/DD/YYY format
+  const date = new Date(`${jobItem[0].date}`);	
+	const formattedDate = `${(date.getMonth() + 1)}/${date.getDate()}/${date.getFullYear()}`;
+	console.log(formattedDate);
+
   return (
     <div className="jobBoardContainer">
       <MapContainer />
@@ -61,7 +68,7 @@ function JobBoard() {
           />
           <CardContent>
           <Typography variant="body1" color="textSecondary" component="p">
-            {job.service} | ${job.pay} | {job.hours} Hours
+            {job.service} | {formattedDate} | ${job.pay}
             </Typography>
             <Typography gutterBottom variant="h6" component="h2">
             {job.venue} 
@@ -72,8 +79,12 @@ function JobBoard() {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button onClick={() => handleDetails(job)} size="small" color="primary" >
-            Learn More
+          <Button onClick={() => handleDetails(job)} 
+          size="small"
+          style={{color: "#172536" }}
+          endIcon={< UnfoldMoreIcon />}
+           >
+          Learn More
           </Button>
         </CardActions>
         </Card>
