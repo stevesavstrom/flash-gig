@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
 // Material-UI
-//
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -29,6 +28,14 @@ import InfoIcon from '@material-ui/icons/Info';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
+// Dialog Form
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 import './AppBar.css';
 
@@ -106,6 +113,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PersistentDrawerLeft() {
+  const userInfo = useSelector((store) => store.user);
+
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -196,11 +205,6 @@ if (user.id != null) {
             <ListItem button>
               <ListItemIcon><InfoIcon /></ListItemIcon>
               <Link className="drawerLink" to="/about">About</Link>
-              <ListItemText/>
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon><AccountCircleIcon /></ListItemIcon>
-              <Link className="drawerLink" to="/">Edit Profile</Link>
               <ListItemText/>
             </ListItem>
         </List>

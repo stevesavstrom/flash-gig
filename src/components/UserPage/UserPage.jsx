@@ -23,6 +23,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import TextField from '@material-ui/core/TextField';
 import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
 
 const useStyles = makeStyles((theme) => ({
@@ -58,8 +59,27 @@ function UserPage() {
   const userApplicationItem = useSelector((store) => store.UserApplicationReducer);
   const classes = useStyles();
 
+  const [firstName, setFirstName] = useState(user.first_name);
+  const [lastName, setLastName] = useState(user.last_name);
+  const [city, setCity] = useState(user.city);
+  const [state, setState] = useState(user.state);
+  const [email, setEmail] = useState(user.email);
+  const [service, setService] = useState(user.service);
+  const [bio, setBio] = useState(user.bio);
+
   // Dialog Alert
     const [open, setOpen] = React.useState(false);
+
+    // Dialog Form
+    const [openDialog, setOpenDialog] = React.useState(false);
+
+    const handleFormOpen = () => {
+      setOpenDialog(true);
+    };
+
+    const handleFormClose = () => {
+      setOpenDialog(false);
+    };
 
     // This is for the selected job to be deleted (dialog modal)
     const [deleteID, setDeleteId] = useState('');
@@ -173,6 +193,9 @@ function UserPage() {
         <Typography className="bioText" variant="subtitle1" gutterBottom>
           {user.bio}
         </Typography>
+        
+        <Button onClick={handleFormOpen} className="drawerLink" to="/">Edit Profile</Button>
+
       </div>
 
       {/* Section: Users' posted jobs */}
@@ -294,6 +317,97 @@ function UserPage() {
             autoFocus
           >
             Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+            {/* Dialog Form for Edit Profile */}
+            <Dialog open={openDialog} onClose={handleFormClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Edit Profile</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+           Please edit your profile information.
+          </DialogContentText>
+
+          <TextField
+            type="text"
+            name="firstName"
+            
+            label="First Name"
+            value={firstName}
+            required
+            fullWidth
+            onChange={(event) => setFirstName(event.target.value)}
+          />
+
+          <TextField
+            type="text"
+            name="lastName"
+            
+            label="Last Name"
+            value={lastName}
+            required
+            fullWidth
+            onChange={(event) => setLastName(event.target.value)}
+          />
+
+          <TextField
+            type="text"
+            name="city"
+            label="City"
+            value={city}
+            required
+            fullWidth
+            onChange={(event) => setCity(event.target.value)}
+          />
+
+        <TextField
+            type="text"
+            name="state"
+            label="State"
+            value={state}
+            required
+            fullWidth
+            onChange={(event) => setState(event.target.value)}
+          />
+
+          <TextField
+            type="text"
+            name="email"
+            label="Email"
+            value={email}
+            required
+            fullWidth
+            onChange={(event) => setEmail(event.target.value)}
+          />
+
+        <TextField
+            type="text"
+            name="email"
+            label="Service"
+            value={service}
+            required
+            fullWidth
+            onChange={(event) => setService(event.target.value)}
+          />
+
+        <TextField
+            type="text"
+            name="bio"
+            label="Bio"
+            value={bio}
+            required
+            fullWidth
+            onChange={(event) => setBio(event.target.value)}
+          />
+
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleFormClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleFormClose} color="primary">
+            Subscribe
           </Button>
         </DialogActions>
       </Dialog>
