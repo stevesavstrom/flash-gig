@@ -78,6 +78,20 @@ function UserPage() {
     };
 
     const handleFormClose = () => {
+      event.preventDefault();
+
+      dispatch({
+        type: 'EDIT_PROFILE',
+        payload: {
+          firstName: firstName,
+          lastName: lastName,
+          city: city,
+          state: state,
+          email: email,
+          service: service,
+          bio: bio,
+        },
+      });
       setOpenDialog(false);
     };
 

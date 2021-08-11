@@ -56,7 +56,7 @@ router.post('/logout', (req, res) => {
 });
 
 // PUT to edit user profile information
-router.put("/register", rejectUnauthenticated, (req, res) => {
+router.put("/", rejectUnauthenticated, (req, res) => {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const city = req.body.city;
@@ -67,7 +67,7 @@ router.put("/register", rejectUnauthenticated, (req, res) => {
 
   const query = 
   `UPDATE "user" 
-  SET "first_name"=$1
+  SET "first_name"=$1,
   "last_name"=$2,
   "city"=$3,
   "state"=$4,

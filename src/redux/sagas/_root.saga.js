@@ -14,6 +14,7 @@ import confirmApplicationSaga from './confirmApplication.saga';
 import rejectApplicationSaga from './rejectApplication.saga';
 import serviceSaga from './service.saga';
 import venueSaga from './venue.saga';
+import editProfileSaga from './editProfile.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -39,5 +40,6 @@ export default function* rootSaga() {
     rejectApplicationSaga(),
     serviceSaga(),
     venueSaga(),
+    editProfileSaga(),
   ]);
 }
