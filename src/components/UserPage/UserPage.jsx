@@ -18,6 +18,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +31,21 @@ const useStyles = makeStyles((theme) => ({
     '& > * + *': {
       marginTop: theme.spacing(2),
     },
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    flexBasis: '33.33%',
+    flexShrink: 0,
+  },
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    color: theme.palette.text.secondary,
+  },
+  card: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
   },
 }));
 // End Material-UI
@@ -100,9 +121,10 @@ function UserPage() {
 
   return (
     <div className="profile">
-
       {/* User profile */}
-      <p>Welcome Back, {user.first_name}! Today is {today} </p>
+      <p>
+        Welcome Back, {user.first_name}! Today is {today}{" "}
+      </p>
       <div className="profileContainer">
         <h2 className="profileName">
           {user.first_name} {user.last_name}
@@ -161,7 +183,54 @@ function UserPage() {
       {userJobItem.map((job, index) => {
         return (
           <div className="userJobCard" key={index}>
-            <div className="jobItem">
+            <Card className={classes.card}>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image={job.image}
+                  title="Job Card"
+                />
+                <CardContent>
+                  <Typography
+                    variant="body1"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    {job.service} | {prettyDate(job.date)} | ${job.pay}
+                  </Typography>
+                  <Typography gutterBottom variant="h6" component="h2">
+                    {job.venue}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    {job.headline}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button
+                  onClick={() => handleApplicationDetails(job)}
+                  size="small"
+                  style={{ color: "#172536" }}
+                >
+                  Applicants
+                </Button>
+                <Button
+                  onClick={() => handleClickOpen(job.id)}
+                  size="small"
+                  style={{ color: "#172536" }}
+                >
+                  Delete
+                </Button>
+                <Button size="small" style={{ color: "#172536" }}>
+                  Edit
+                </Button>
+              </CardActions>
+            </Card>
+            {/* <div className="jobItem">
               <div className="buttonGroup">
                 <CameraAltOutlinedIcon
                   className="icon"
@@ -170,29 +239,36 @@ function UserPage() {
               </div>
               <h3>{job.headline}</h3>
               <Chip
-          label={job.service}
-          variant="outlined"
-          icon={<CameraAltOutlinedIcon />}
-        />
-        <Chip label={job.venue} variant="outlined" />
+                label={job.service}
+                variant="outlined"
+                icon={<CameraAltOutlinedIcon />}
+              />
+              <Chip label={job.venue} variant="outlined" />
 
-              <p><strong>Date:</strong> {prettyDate(job.date)}{" "}</p>
-              {/* <p><strong>Venue:</strong> {job.venue}{" "}</p> */}
-              <p><strong>Hours:</strong> {job.hours}{" "}</p>
-              <p><strong>Pay:</strong> ${job.pay}{" "}</p>
-              {/* <p><strong>Service Needed:</strong> {job.service}{" "}</p> */}
+              <p>
+                <strong>Date:</strong>{" "}
+                {new Date(job.date).toLocaleDateString("en-US")}{" "}
+              </p> */}
+            {/* <p><strong>Venue:</strong> {job.venue}{" "}</p> */}
+            {/* <p>
+                <strong>Hours:</strong> {job.hours}{" "}
+              </p>
+              <p>
+                <strong>Pay:</strong> ${job.pay}{" "}
+              </p> */}
+            {/* <p><strong>Service Needed:</strong> {job.service}{" "}</p> */}
 
-              {/* Button Group */}
-              <div className="buttonGroup">
+            {/* Button Group */}
+            {/* <div className="buttonGroup">
                 <button
                   className="userJobButton"
                   onClick={() => handleApplicationDetails(job)}
                 >
                   Applicants
-                </button>
+                </button> */}
 
-                {/* Dialog for delete button */}
-                <button
+            {/* Dialog for delete button */}
+            {/* <button
                   className="userJobButton"
                   variant="outlined"
                   color="primary"
@@ -201,9 +277,9 @@ function UserPage() {
                   Delete
                 </button>
                 <button className="userJobButton">Edit</button>
-              </div>
-            </div>
+              </div> */}
           </div>
+          // </div>
         );
       })}
 

@@ -23,24 +23,18 @@
 }
 
 .userJobBoardContainer {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 90%;
-  margin: auto;
-  padding: 15px;
-  text-align: center;
-  font-family: arial;
-  border-radius: 8px;
+	padding: 0px;
+  text-align: left;
 }
 
 .userJobCard {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
   margin: auto;
-  margin-bottom: 8px;
-  padding: 10px;
-  padding-left: 20px;
-  width: 90%;
-  background-color: #ffffff;
+  margin-bottom: 5px;
+  padding: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 95%;
+  
 }
 
 .userApplicationCard {
