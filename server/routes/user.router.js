@@ -55,4 +55,46 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+// PUT to edit user profile information
+router.put("/register", rejectUnauthenticated, (req, res) => {
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const city = req.body.city;
+  const state = req.body.state;
+  const email = req.body.email;
+  const service = req.body.service;
+  const bio = req.body.bio;
+
+  const query = 
+  `UPDATE "user" 
+  SET "first_name"=$1
+  "last_name"=$2,
+  "city"=$3,
+  "state"=$4,
+  "email"=$5,
+  "service"=$6,
+  "bio"=$7
+  WHERE id=$8;`;
+
+	pool
+	  .query(query, [
+      firstName,
+      lastName,
+      city,
+      state,
+      email,
+      service,
+      bio,
+      req.user.id
+    ])
+	  .then((result) => {
+		console.log("Updated user profile info with PUT", result);
+		res.sendStatus(201);
+	  })
+	  .catch((error) => {
+		console.log(`ERROR updating user profile with PUT: ${error}`);
+		res.sendStatus(500);
+	  });
+  });
+
 module.exports = router;

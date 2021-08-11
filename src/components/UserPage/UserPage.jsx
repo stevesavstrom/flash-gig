@@ -193,9 +193,10 @@ function UserPage() {
         <Typography className="bioText" variant="subtitle1" gutterBottom>
           {user.bio}
         </Typography>
-        
-        <Button onClick={handleFormOpen} className="drawerLink" to="/">Edit Profile</Button>
 
+        <Button onClick={handleFormOpen} className="drawerLink" to="/">
+          Edit Profile
+        </Button>
       </div>
 
       {/* Section: Users' posted jobs */}
@@ -293,7 +294,7 @@ function UserPage() {
         );
       })}
 
-      {/* Dialog Component Exists Outside .map */}
+      {/* Dialog component for DELETE Exists Outside .map */}
       {/* Dialog component uses state to capture job id -- review above */}
       <Dialog
         open={open}
@@ -321,18 +322,17 @@ function UserPage() {
         </DialogActions>
       </Dialog>
 
-            {/* Dialog Form for Edit Profile */}
-            <Dialog open={openDialog} onClose={handleFormClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Edit Profile</DialogTitle>
+      {/* Dialog Form for EDIT Profile */}
+      <Dialog
+        open={openDialog}
+        onClose={handleFormClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">Update Profile</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-           Please edit your profile information.
-          </DialogContentText>
-
           <TextField
             type="text"
             name="firstName"
-            
             label="First Name"
             value={firstName}
             required
@@ -343,7 +343,6 @@ function UserPage() {
           <TextField
             type="text"
             name="lastName"
-            
             label="Last Name"
             value={lastName}
             required
@@ -361,7 +360,7 @@ function UserPage() {
             onChange={(event) => setCity(event.target.value)}
           />
 
-        <TextField
+          <TextField
             type="text"
             name="state"
             label="State"
@@ -381,7 +380,7 @@ function UserPage() {
             onChange={(event) => setEmail(event.target.value)}
           />
 
-        <TextField
+          <TextField
             type="text"
             name="email"
             label="Service"
@@ -391,7 +390,7 @@ function UserPage() {
             onChange={(event) => setService(event.target.value)}
           />
 
-        <TextField
+          <TextField
             type="text"
             name="bio"
             label="Bio"
@@ -400,14 +399,13 @@ function UserPage() {
             fullWidth
             onChange={(event) => setBio(event.target.value)}
           />
-
         </DialogContent>
         <DialogActions>
           <Button onClick={handleFormClose} color="primary">
             Cancel
           </Button>
           <Button onClick={handleFormClose} color="primary">
-            Subscribe
+            Update
           </Button>
         </DialogActions>
       </Dialog>
