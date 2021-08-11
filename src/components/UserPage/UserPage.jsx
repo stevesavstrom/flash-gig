@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 345,
   },
   media: {
-    height: 140,
+    height: 120,
   },
 }));
 // End Material-UI
@@ -230,56 +230,7 @@ function UserPage() {
                 </Button>
               </CardActions>
             </Card>
-            {/* <div className="jobItem">
-              <div className="buttonGroup">
-                <CameraAltOutlinedIcon
-                  className="icon"
-                  style={{ fontSize: 70, color: "#172536" }}
-                />
-              </div>
-              <h3>{job.headline}</h3>
-              <Chip
-                label={job.service}
-                variant="outlined"
-                icon={<CameraAltOutlinedIcon />}
-              />
-              <Chip label={job.venue} variant="outlined" />
-
-              <p>
-                <strong>Date:</strong>{" "}
-                {new Date(job.date).toLocaleDateString("en-US")}{" "}
-              </p> */}
-            {/* <p><strong>Venue:</strong> {job.venue}{" "}</p> */}
-            {/* <p>
-                <strong>Hours:</strong> {job.hours}{" "}
-              </p>
-              <p>
-                <strong>Pay:</strong> ${job.pay}{" "}
-              </p> */}
-            {/* <p><strong>Service Needed:</strong> {job.service}{" "}</p> */}
-
-            {/* Button Group */}
-            {/* <div className="buttonGroup">
-                <button
-                  className="userJobButton"
-                  onClick={() => handleApplicationDetails(job)}
-                >
-                  Applicants
-                </button> */}
-
-            {/* Dialog for delete button */}
-            {/* <button
-                  className="userJobButton"
-                  variant="outlined"
-                  color="primary"
-                  onClick={() => handleClickOpen(job.id)}
-                >
-                  Delete
-                </button>
-                <button className="userJobButton">Edit</button>
-              </div> */}
           </div>
-          // </div>
         );
       })}
 
@@ -352,6 +303,56 @@ function UserPage() {
 
 // this allows us to use <App /> in index.js
 export default UserPage;
+
+
+{/* <div className="jobItem">
+              <div className="buttonGroup">
+                <CameraAltOutlinedIcon
+                  className="icon"
+                  style={{ fontSize: 70, color: "#172536" }}
+                />
+              </div>
+              <h3>{job.headline}</h3>
+              <Chip
+                label={job.service}
+                variant="outlined"
+                icon={<CameraAltOutlinedIcon />}
+              />
+              <Chip label={job.venue} variant="outlined" />
+
+              <p>
+                <strong>Date:</strong>{" "}
+                {new Date(job.date).toLocaleDateString("en-US")}{" "}
+              </p> */}
+            {/* <p><strong>Venue:</strong> {job.venue}{" "}</p> */}
+            {/* <p>
+                <strong>Hours:</strong> {job.hours}{" "}
+              </p>
+              <p>
+                <strong>Pay:</strong> ${job.pay}{" "}
+              </p> */}
+            {/* <p><strong>Service Needed:</strong> {job.service}{" "}</p> */}
+
+            {/* Button Group */}
+            {/* <div className="buttonGroup">
+                <button
+                  className="userJobButton"
+                  onClick={() => handleApplicationDetails(job)}
+                >
+                  Applicants
+                </button> */}
+
+            {/* Dialog for delete button */}
+            {/* <button
+                  className="userJobButton"
+                  variant="outlined"
+                  color="primary"
+                  onClick={() => handleClickOpen(job.id)}
+                >
+                  Delete
+                </button>
+                <button className="userJobButton">Edit</button>
+              </div> */}
 
 
 
