@@ -7,8 +7,8 @@ function* rejectApplicationSaga (){
 
 function* rejectApplication (action){
 	try {
-		yield call(axios.put, `/api/application/reject/${action.payload.id}`, action.payload);
-		console.log(`What is in the PUT payload`, action.payload.id);
+		yield call(axios.put, `/api/application/reject/${action.payload.application}`, action.payload.application);
+		console.log(`What is in the PUT payload`, action.payload);
 		yield put({type: "GET_APPLICATION_DETAILS", payload: action.payload.id });
 	} catch(error){
 		console.log(`problem rejecting application`, error);

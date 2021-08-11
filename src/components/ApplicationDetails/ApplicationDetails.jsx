@@ -21,6 +21,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="right" ref={ref} {...props} />;
+});
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
@@ -100,12 +105,11 @@ function ApplicationDetails() {
 		console.log('*** This is handle application payload', application);
 		dispatch({ type: 'CONFIRM_APPLICATION', payload: {application, id}})
     setOpen(false);
-		// window.location.reload(false);
 	}
 
 	const handleReject = (application) => {
 		console.log('*** This is handle reject payload', application);
-		dispatch({ type: 'REJECT_APPLICATION', payload: application })
+		dispatch({ type: 'REJECT_APPLICATION', payload: {application, id}})
 		window.location.reload(false);
 	}
 
@@ -114,12 +118,19 @@ function ApplicationDetails() {
 
   // This is for the selected application to be confirmed (dialog modal)
   const [confirmId, setConfirmId] = useState('');
+  const [rejectId, setRejectId] = useState('');
     
   const handleClickOpen = (applicationId) => {
-    console.log('This is Open applicationId', applicationId);
+    console.log('This is open confirm dialog by applicationId', applicationId);
     setConfirmId(applicationId)
     setOpen(true);
     };
+
+  const handleRejectClickOpen = (applicationId) => {
+    console.log("This is open reject dialog by applicationId", applicationId);
+    setRejectId(applicationId);
+    setOpen(true);
+  };
     
   const handleClose = () => {
     setOpen(false);
@@ -215,7 +226,7 @@ function ApplicationDetails() {
                 {application.status === "Applied" && (
                   <Box textAlign="center" m={1}>
                     <Button
-                      onClick={() => handleReject(application)}
+                      onClick={() => handleRejectClickOpen(application.id)}
                       size="small"
                       style={{ backgroundColor: "#172536", color: "#FFFFFF" }}
                     >
@@ -227,7 +238,7 @@ function ApplicationDetails() {
                 {application.status === "Confirmed" && (
                   <Box textAlign="center" m={1}>
                     <Button
-                      onClick={() => handleReject(application)}
+                      onClick={() => handleRejectClickOpen(application.id)}
                       size="small"
                       style={{ backgroundColor: "#172536", color: "#FFFFFF" }}
                     >
@@ -254,9 +265,10 @@ function ApplicationDetails() {
       </Box>
 
       {/* Dialog component for CONFIRM Exists Outside .map */}
-      {/* Dialog component uses state to capture job id -- review above */}
+      {/* Dialog component uses state to capture application and job id -- review above */}
       <Dialog
         open={open}
+        TransitionComponent={Transition}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
@@ -273,6 +285,35 @@ function ApplicationDetails() {
           </Button>
           <Button
             onClick={() => handleConfirm(confirmId)}
+            color="primary"
+            autoFocus
+          >
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Dialog component for REJECT Exists Outside .map */}
+      {/* Dialog component uses state to capture application and job id -- review above */}
+      <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Reject Applicant?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            The applicant will be rejected and removed from the list.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            No
+          </Button>
+          <Button
+            onClick={() => handleReject(rejectId)}
             color="primary"
             autoFocus
           >

@@ -24,7 +24,12 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import TextField from '@material-ui/core/TextField';
-import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
+import Slide from '@material-ui/core/Slide';
+
+// Dialog transition effect
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="right" ref={ref} {...props} />;
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -312,6 +317,7 @@ function UserPage() {
       {/* Dialog component uses state to capture job id -- review above */}
       <Dialog
         open={open}
+        TransitionComponent={Transition}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
@@ -319,7 +325,7 @@ function UserPage() {
         <DialogTitle id="alert-dialog-title">{"Delete job?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            The job will permanently be deleted.
+            This job will permanently be deleted.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -339,6 +345,7 @@ function UserPage() {
       {/* Dialog Form for EDIT Profile */}
       <Dialog
         open={openDialog}
+        TransitionComponent={Transition}
         onClose={handleFormClose}
         aria-labelledby="form-dialog-title"
       >
