@@ -16,6 +16,11 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
@@ -73,9 +78,12 @@ function ApplicationDetails() {
 	const application = useSelector((store) => store.ApplicationReducer);
 
 	const {id} = useParams();
+  console.log('is this job id?', id);
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const classes = useStyles();
+
+  // const [applicationStatus, setApplicationStatus] = useState(application.status);
 
 	console.log(`***** This is applicationDetails *****`, applicationDetails);
 
@@ -90,8 +98,9 @@ function ApplicationDetails() {
 
 	const handleConfirm = (application) => {
 		console.log('*** This is handle application payload', application);
-		dispatch({ type: 'CONFIRM_APPLICATION', payload: application })
-		window.location.reload(false);
+		dispatch({ type: 'CONFIRM_APPLICATION', payload: {application, id}})
+    setOpen(false);
+		// window.location.reload(false);
 	}
 
 	const handleReject = (application) => {
@@ -99,6 +108,22 @@ function ApplicationDetails() {
 		dispatch({ type: 'REJECT_APPLICATION', payload: application })
 		window.location.reload(false);
 	}
+
+  // Dialog Alert
+  const [open, setOpen] = React.useState(false);
+
+  // This is for the selected application to be confirmed (dialog modal)
+  const [confirmId, setConfirmId] = useState('');
+    
+  const handleClickOpen = (applicationId) => {
+    console.log('This is Open applicationId', applicationId);
+    setConfirmId(applicationId)
+    setOpen(true);
+    };
+    
+  const handleClose = () => {
+    setOpen(false);
+    };
 
 	console.log(id);
 	console.log(application);
@@ -149,7 +174,6 @@ function ApplicationDetails() {
                 </ListItemAvatar>
               )}
                 <ListItemText
-                  // primary="Application"
                   primary={
                     <p>
                       <strong>Status:</strong>{" "}
@@ -180,7 +204,7 @@ function ApplicationDetails() {
                 {application.status === "Applied" && (
                   <Box textAlign="center" m={1}>
                     <Button
-                      onClick={() => handleConfirm(application)}
+                      onClick={() => handleClickOpen(application.id)}
                       size="small"
                       style={{ backgroundColor: "#172536", color: "#FFFFFF" }}
                     >
@@ -228,6 +252,34 @@ function ApplicationDetails() {
           Back to Profile
         </Button>
       </Box>
+
+      {/* Dialog component for CONFIRM Exists Outside .map */}
+      {/* Dialog component uses state to capture job id -- review above */}
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Confirm Applicant?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            The job will be confirmed.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            No
+          </Button>
+          <Button
+            onClick={() => handleConfirm(confirmId)}
+            color="primary"
+            autoFocus
+          >
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

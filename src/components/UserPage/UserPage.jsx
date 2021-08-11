@@ -67,9 +67,6 @@ function UserPage() {
   const [service, setService] = useState(user.service);
   const [bio, setBio] = useState(user.bio);
 
-  // Dialog Alert
-    const [open, setOpen] = React.useState(false);
-
     // Dialog Form
     const [openDialog, setOpenDialog] = React.useState(false);
 
@@ -94,6 +91,9 @@ function UserPage() {
       });
       setOpenDialog(false);
     };
+
+    // Dialog Alert
+    const [open, setOpen] = React.useState(false);
 
     // This is for the selected job to be deleted (dialog modal)
     const [deleteID, setDeleteId] = useState('');
@@ -179,17 +179,17 @@ function UserPage() {
         </Box>
 
         {/* User Stats Card */}
-        <ul class="card__info">
+        <ul className="card__info">
           <li>
-            <span class="card__info__stats">{userJobItem.length}</span>
+            <span className="card__info__stats">{userJobItem.length}</span>
             <span>posted</span>
           </li>
           <li>
-            <span class="card__info__stats">{userApplicationItem.length}</span>
+            <span className="card__info__stats">{userApplicationItem.length}</span>
             <span>applied</span>
           </li>
           <li>
-            <span class="card__info__stats">20</span>
+            <span className="card__info__stats">20</span>
             <span>received</span>
           </li>
         </ul>
