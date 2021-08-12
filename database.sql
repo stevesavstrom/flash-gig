@@ -9,6 +9,7 @@ CREATE TABLE "user" (
 );
 
 -- List of wedding venues
+-- "location" takes in {lat:, lng:}
 CREATE TABLE "venue" (
 	"id" SERIAL PRIMARY KEY,
 	"venue" VARCHAR(255),
@@ -17,8 +18,8 @@ CREATE TABLE "venue" (
 	"state" VARCHAR(255),
 	"zip" INT,
 	"description" TEXT,
-	"lat" NUMERIC,
-	"lng" NUMERIC
+	"location" json,
+	"image" VARCHAR(255)
 );
 
 -- List of services
