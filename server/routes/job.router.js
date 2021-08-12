@@ -152,4 +152,47 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
+// EDIT job by id (user can only edit jobs they have created)
+// Action takes place of UserPage component in Posted Jobs section
+router.put("/:id", rejectUnauthenticated, (req, res) => {
+  console.log(`Job being EDITED:`, req.params.id);
+
+  const headline = req.body.headline;
+  const date = req.body.date;
+  const venue = req.body.venue_id;
+  const hours = req.body.hours;
+  const pay = req.body.pay;
+  const service = req.body.service_id;
+
+  const query = 
+  `UPDATE "job" 
+  SET "headline"=$1,
+  "date"=$2,
+  "venue_id"=$3,
+  "hours"=$4,
+  "pay"=$5,
+  "service_id"=$6
+  WHERE id=$8;`;
+
+	pool
+	  .query(query, [
+      headline,
+      date,
+      venue,
+      hours,
+      pay,
+      service,
+      req.params.id
+    ])
+	  .then((result) => {
+		console.log("Updated job details with PUT", result);
+		res.sendStatus(201);
+	  })
+	  .catch((error) => {
+		console.log(`ERROR updating job info with PUT: ${error}`);
+		res.sendStatus(500);
+	  });
+  });
+
+
 module.exports = router;

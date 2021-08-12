@@ -153,13 +153,16 @@ function ApplicationDetails() {
     <div className="applicationDetailsContainer">
       <div className="applicationDetailsHeader">
         {/* Application Details Header */}
-        <h1>Application Details</h1>
+        <Typography className="applicationDetailsHeader" variant="h4" gutterBottom>Application Details</Typography>
         {/* Conditional message for 0 applicants */}
         {applicationDetails.length < 1 && (
-          <h3>
-            Sorry! You have do not have any applicants for this job yet. Check
+          <div className="sorryCard">
+            <Typography variant="h5" gutterBottom>Sorry!</Typography>
+          <Typography className="sorry" variant="body1" gutterBottom>
+            You have do not have any applicants for this job yet. Check
             back later!
-          </h3>
+          </Typography>
+          </div>
         )}
         {/* Conditional message for 1 or more applicants */}
         {applicationDetails.length >= 1 && (
@@ -277,7 +280,9 @@ function ApplicationDetails() {
         <Button
           onClick={handleBack}
           size="medium"
-          style={{ backgroundColor: "#172536", color: "#FFFFFF" }}
+          color="primary"
+          variant="outlined"
+          // style={{ backgroundColor: "#172536", color: "#FFFFFF" }}
           className="applicationDetailsButton"
         >
           Back to Profile

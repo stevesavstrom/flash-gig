@@ -111,7 +111,7 @@ function App() {
             <LandingPage />
           </ProtectedRoute> */}
 
-          <Route
+          <ProtectedRoute
             // with authRedirect:
             // - if logged in, redirects to "/user"
             // - else shows LandingPage at "/home"
@@ -119,9 +119,9 @@ function App() {
             path="/map"
           >
             <Map />
-          </Route>
+          </ProtectedRoute>
 
-          <Route
+          <ProtectedRoute
             // with authRedirect:
             // - if logged in, redirects to "/user"
             // - else shows LandingPage at "/home"
@@ -129,7 +129,7 @@ function App() {
             path="/mapcontainer"
           >
             <MapContainer />
-          </Route>
+          </ProtectedRoute>
 
           <ProtectedRoute
             // with authRedirect:

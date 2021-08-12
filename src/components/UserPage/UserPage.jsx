@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import CameraAltOutlinedIcon from '@material-ui/icons/CameraAltOutlined';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 import AssignmentTurnedInOutlinedIcon from '@material-ui/icons/AssignmentTurnedInOutlined';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -203,10 +204,14 @@ function UserPage() {
         <Chip
           label={user.service}
           variant="outlined"
-          icon={<CameraAltOutlinedIcon />}
+          icon={<CameraAltOutlinedIcon/>}
         />
-        <Chip label={user.city} variant="outlined" />
-        <Chip label={user.state} variant="outlined" />
+        <Chip 
+        label={user.city} 
+        variant="outlined"
+        icon={<LocationOnIcon/>}
+         />
+        {/* <Chip label={user.state} variant="outlined" /> */}
 
         {/* User Bio */}
         <Typography className="bioText" variant="subtitle1" gutterBottom>
