@@ -1,10 +1,9 @@
 .registerFormPanel {
 	box-sizing: border-box;
-	width: 400px;
-	max-width: 100%;
-	padding: 25px;
+	width: 90%;
+	padding: 20px;
 	margin: 0 auto 20px;
-	background-color: #efefef;
+	background-color: #fff;
 	border-radius: 3px;
 	box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
 }
@@ -14,4 +13,17 @@
 	padding: 8px;
 	margin: 5px;
 	margin-bottom: 10px;
+}
+
+.registerFormButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.loginLink {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

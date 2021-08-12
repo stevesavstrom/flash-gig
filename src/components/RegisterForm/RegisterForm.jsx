@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import './RegisterForm.css';
 
@@ -50,6 +51,7 @@ function RegisterForm() {
   const serviceList = useSelector((store) => store.ServiceReducer);
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch({ type: "GET_SERVICE" });
@@ -232,8 +234,20 @@ function RegisterForm() {
           />
         </label>
       </div> 
-      <div>
+      <div className="registerFormButton">
         <input className="btn" type="submit" name="submit" value="Register" />
+      </div>
+
+      <div className="loginLink">
+      <button
+          type="button"
+          className="btn btn_asLink"
+          onClick={() => {
+            history.push('/login');
+          }}
+        >
+          Login
+        </button>
       </div>
     </form>
   );
