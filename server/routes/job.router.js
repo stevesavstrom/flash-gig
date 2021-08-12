@@ -136,7 +136,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 });
 
 // DELETE job by id (user can only delete jobs they have posted)
-// Action takes place of UserPage component in Posted Jobs section
+// Action takes place of UserPage component in Posted Jobs section -
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
   console.log(`Job being DELETED:`, req.params.id);
   const query = `DELETE from job WHERE id=$1;`;
