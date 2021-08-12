@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import './UserPage.css';
 
 // Material-UI
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
@@ -16,7 +17,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -161,9 +161,9 @@ function UserPage() {
   return (
     <div className="profile">
       {/* User profile */}
-      <p>
+      {/* <p>
         Welcome Back, {user.first_name}! Today is {today}{" "}
-      </p>
+      </p> */}
       <div className="profileContainer">
         <h2 className="profileName">
           {user.first_name} {user.last_name}
@@ -194,8 +194,8 @@ function UserPage() {
             <span>applied</span>
           </li>
           <li>
-            <span className="card__info__stats">20</span>
-            <span>received</span>
+            <span className="card__info__stats">7</span>
+            <span>reviews</span>
           </li>
         </ul>
 
@@ -353,6 +353,7 @@ function UserPage() {
         <DialogContent>
           <TextField
             type="text"
+            color="primary"
             name="firstName"
             label="First Name"
             value={firstName}
@@ -363,6 +364,7 @@ function UserPage() {
 
           <TextField
             type="text"
+            color="primary"
             name="lastName"
             label="Last Name"
             value={lastName}
@@ -373,6 +375,7 @@ function UserPage() {
 
           <TextField
             type="text"
+            color="primary"
             name="city"
             label="City"
             value={city}
@@ -383,6 +386,7 @@ function UserPage() {
 
           <TextField
             type="text"
+            color="primary"
             name="state"
             label="State"
             value={state}
@@ -393,6 +397,7 @@ function UserPage() {
 
           <TextField
             type="text"
+            color="primary"
             name="email"
             label="Email"
             value={email}
@@ -403,6 +408,7 @@ function UserPage() {
 
           <TextField
             type="text"
+            color="primary"
             name="email"
             label="Service"
             value={service}
@@ -413,6 +419,7 @@ function UserPage() {
 
           <TextField
             type="text"
+            color="primary"
             name="bio"
             label="Bio"
             value={bio}

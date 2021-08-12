@@ -109,7 +109,7 @@ router.put("/confirm/:id", rejectUnauthenticated, (req, res) => {
 	  });
   });
 
-  // PUT to REJECT application
+// PUT to REJECT application
 router.put("/reject/:id", rejectUnauthenticated, (req, res) => {
 	console.log("What is being confirmed:", req.params.id);
 	const query = `UPDATE application SET "status"='Rejected' WHERE id=$1;`;

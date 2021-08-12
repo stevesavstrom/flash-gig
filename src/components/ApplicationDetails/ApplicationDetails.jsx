@@ -108,7 +108,7 @@ function ApplicationDetails() {
 	const handleConfirm = (application) => {
 		console.log('*** This is handle application payload', application);
 		dispatch({ type: 'CONFIRM_APPLICATION', payload: {application, id}})
-    setOpen(false);
+    setOpenConfirm(false);
 	}
 
   // Dispatches 'Rejected' status on dialog click
@@ -120,16 +120,17 @@ function ApplicationDetails() {
 
   // Dialog Alert for Confirm and Reject applicants
   const [open, setOpen] = React.useState(false);
+  const [openConfirm, setOpenConfirm] = React.useState(false);
 
   // This is for the selected application to be confirmed (dialog modal)
   const [confirmId, setConfirmId] = useState('');
   const [rejectId, setRejectId] = useState('');
   
   // Dialog alert to CONFIRM APPLICANT is opened and confirmation message appears
-  const handleClickOpen = (applicationId) => {
+  const handleConfirmOpen = (applicationId) => {
     console.log('This is open confirm dialog by applicationId', applicationId);
     setConfirmId(applicationId)
-    setOpen(true);
+    setOpenConfirm(true);
     };
 
   // Dialog alert to REJECT APPLICANT is opened and confirmation message appears
@@ -140,9 +141,13 @@ function ApplicationDetails() {
   };
   
   // Dialog alert closes when 'No' is clicked
-  const handleClose = () => {
-    setOpen(false);
+  const handleConfirmClose = () => {
+    setOpenConfirm(false);
     };
+
+    const handleRejectClose = () => {
+      setOpen(false);
+      };
 
 	return (
     <div className="applicationDetailsContainer">
@@ -227,7 +232,7 @@ function ApplicationDetails() {
                 {application.status === "Applied" && (
                   <Box textAlign="center" m={1}>
                     <Button
-                      onClick={() => handleClickOpen(application.id)}
+                      onClick={() => handleConfirmOpen(application.id)}
                       size="small"
                       style={{ backgroundColor: "#172536", color: "#FFFFFF" }}
                     >
@@ -282,9 +287,9 @@ function ApplicationDetails() {
       {/* Dialog component for CONFIRM Exists Outside .map */}
       {/* Dialog component uses state to capture application and job id -- review above */}
       <Dialog
-        open={open}
+        open={openConfirm}
         TransitionComponent={Transition}
-        onClose={handleClose}
+        onClose={handleConfirmClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
@@ -296,7 +301,7 @@ function ApplicationDetails() {
         </DialogContent>
         <DialogActions>
           {/* Clicking 'NO' closes dialog alert */}
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleConfirmClose} color="primary">
             No
           </Button>
           {/* Clicking 'YES' dispatches PUT to confirm applicant */}
@@ -315,7 +320,7 @@ function ApplicationDetails() {
       <Dialog
         open={open}
         TransitionComponent={Transition}
-        onClose={handleClose}
+        onClose={handleRejectClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
@@ -327,7 +332,7 @@ function ApplicationDetails() {
         </DialogContent>
         <DialogActions>
           {/* Clicking 'NO' closes dialog alert */}
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleRejectClose} color="primary">
             No
           </Button>
           {/* Clicking 'NO' dispatches PUT to reject applicant */}

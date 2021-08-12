@@ -1,0 +1,25 @@
+.loginFormPanel {
+	box-sizing: border-box;
+	width: 90%;
+	max-width: 100%;
+	padding: 25px;
+	margin: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
+}
+
+.loginViewButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.registerLink {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}

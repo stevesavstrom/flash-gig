@@ -133,7 +133,7 @@ if (user.id != null) {
       <CssBaseline />
       <AppBar
         position="fixed"
-		style={{ background: '#172536' }}
+		    style={{ background: '#172536' }}
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
