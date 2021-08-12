@@ -88,12 +88,20 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
   job.headline, 
   job.date, 
   job.hours, 
-  job.pay, 
+  job.pay,
+  job.user_id,
   venue.venue, 
-  venue.description, 
+  venue.description,
+  "user".first_name,
+  "user".last_name,
+  "user".city,
+  "user".state,
+  "user".bio,
+  "user".photo,
   venue.image, 
   service.service
   FROM job
+  JOIN "user" ON "user".id = job.user_id
   JOIN venue ON venue.id = job.venue_id
   JOIN service ON service.id = job.service_id
   WHERE job.id = $1;`;
@@ -168,20 +176,16 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
   `UPDATE "job" 
   SET "headline"=$1,
   "date"=$2,
-  "venue_id"=$3,
   "hours"=$4,
   "pay"=$5,
-  "service_id"=$6
   WHERE id=$8;`;
 
 	pool
 	  .query(query, [
       headline,
       date,
-      venue,
       hours,
       pay,
-      service,
       req.params.id
     ])
 	  .then((result) => {
