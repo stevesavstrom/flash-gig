@@ -82,6 +82,9 @@ const useStyles = makeStyles((theme) => ({
   inline: {
     display: 'inline',
   },
+  box: {
+    paddingBottom: '500px'
+  }
   }));
   // end Material-UI styles
 
@@ -276,7 +279,7 @@ function ApplicationDetails() {
     {/* end .map of application */}
 
     {/* Back button returns user to UserPage */}
-      <Box textAlign="center" m={3}>
+      <Box style={{ paddingBottom: "140px"}} textAlign="center" m={3}>
         <Button
           onClick={handleBack}
           size="medium"

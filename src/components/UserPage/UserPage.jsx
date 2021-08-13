@@ -328,7 +328,7 @@ function UserPage() {
       {userApplicationItem.map((application, index) => {
         return (
           <div className="userApplicationCard" key={index}>
-            <List className={classes.root}>
+            <List className={classes.list}>
               <ListItem alignItems="flex-start">
                 {/* Conditionally displays green avatar badge on confirmed applicants */}
                 {application.status === "Confirmed" && (
@@ -373,7 +373,7 @@ function UserPage() {
                         className={classes.inline}
                         color="textPrimary"
                       >
-                          You submitted an application to <br></br> {" "}
+                          Application submitted to <br></br> {" "}
                           <strong>{application && application.first_name}{" "} 
                           {application && application.last_name}</strong> for a wedding on <strong>{prettyDate(application && application.date)}</strong> at <strong>{application && application.venue}</strong>. The gig pays <strong>${application && application.pay}</strong> for <strong>{application && application.hours} hours</strong> of work.
                       </Typography>
@@ -408,6 +408,7 @@ function UserPage() {
                 <strong>Pay:</strong> ${application.pay}{" "}
               </p>
             </div> */}
+            
           </div>
         );
       })}
