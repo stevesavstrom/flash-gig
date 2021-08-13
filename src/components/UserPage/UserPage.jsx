@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import './UserPage.css';
 
 // Material-UI
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
@@ -26,11 +26,49 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import TextField from '@material-ui/core/TextField';
 import Slide from '@material-ui/core/Slide';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import Badge from '@material-ui/core/Badge';
 
 // Dialog transition effect
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="right" ref={ref} {...props} />;
 });
+
+// Green avatar badge for confirmed applicant
+const StyledBadge = withStyles((theme) => ({
+  badge: {
+    backgroundColor: '#44b700',
+    color: '#44b700',
+    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+    '&::after': {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      borderRadius: '50%',
+      animation: '$ripple 1.2s infinite ease-in-out',
+      border: '1px solid currentColor',
+      content: '""',
+    },
+  },
+  '@keyframes ripple': {
+    '0%': {
+      transform: 'scale(1.3)',
+      opacity: 1,
+    },
+    '100%': {
+      transform: 'scale(2.8)',
+      opacity: 0,
+    },
+  },
+}))(Badge);
+// end Green Avatar badge
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -290,7 +328,63 @@ function UserPage() {
       {userApplicationItem.map((application, index) => {
         return (
           <div className="userApplicationCard" key={index}>
-            <div className="jobItem">
+            <List className={classes.root}>
+              <ListItem alignItems="flex-start">
+                {/* Conditionally displays green avatar badge on confirmed applicants */}
+                {application.status === "Confirmed" && (
+                  <ListItemAvatar>
+                    <StyledBadge
+                      overlap="circular"
+                      anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "right",
+                      }}
+                      variant="dot"
+                    >
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={application && application.photo}
+                      />
+                    </StyledBadge>
+                  </ListItemAvatar>
+                )}
+                {/* Conditionally displays standard avatar badge on applied applicants */}
+                {application.status === "Applied" && (
+                  <ListItemAvatar>
+                    <Avatar
+                      alt="Remy Sharp"
+                      src={application && application.photo}
+                    />
+                  </ListItemAvatar>
+                )}
+                {/* Displays remaining applicant information */}
+                <ListItemText
+                  primary={
+                    <p>
+                      <strong>Status:</strong>{" "}
+                      {application && application.status}{" "}
+                    </p>
+                  }
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        component="span"
+                        variant="body2"
+                        className={classes.inline}
+                        color="textPrimary"
+                      >
+                          You submitted an application to <br></br> {" "}
+                          <strong>{application && application.first_name}{" "} 
+                          {application && application.last_name}</strong> for a wedding on <strong>{prettyDate(application && application.date)}</strong> at <strong>{application && application.venue}</strong>. The gig pays <strong>${application && application.pay}</strong> for <strong>{application && application.hours} hours</strong> of work.
+                      </Typography>
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+              <Divider variant="middle" component="li" />
+            </List>
+
+            {/* <div className="jobItem">
               <div className="buttonGroup">
                 <AssignmentTurnedInOutlinedIcon
                   className="icon"
@@ -313,7 +407,7 @@ function UserPage() {
               <p>
                 <strong>Pay:</strong> ${application.pay}{" "}
               </p>
-            </div>
+            </div> */}
           </div>
         );
       })}
@@ -430,6 +524,8 @@ function UserPage() {
             value={bio}
             required
             fullWidth
+            multiline
+            rows={3}
             onChange={(event) => setBio(event.target.value)}
           />
         </DialogContent>

@@ -55,11 +55,20 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 	job.headline, 
 	job.date, 
 	job.hours, 
-	job.pay
+	job.pay,
+	"user".first_name,
+	"user".last_name,
+	"user".city,
+	"user".state,
+	"user".bio,
+	"user".photo,
+	venue.venue
 	FROM application
 	JOIN job ON job.id = application.job_id
+	JOIN "user" ON "user".id = job.user_id
+	JOIN venue ON venue.id = job.venue_id
 	WHERE application.applicant_id = $1
-	ORDER BY "date" DESC;`;
+	ORDER BY "date" DESC`;
 	pool
 	  .query(query, [req.user.id])
 	  .then((result) => {

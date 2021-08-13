@@ -56,7 +56,6 @@ function JobForm() {
 
   const postJob = (event) => {
     event.preventDefault();
-
     dispatch({
       type: 'POST_JOB',
       payload: {

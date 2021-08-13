@@ -88,7 +88,7 @@ function JobDetails() {
 	return (
 		<div className="detailsMain">
 		<div className="detailsContainer">
-		<Typography variant="h4" gutterBottom>{jobDetails && jobDetails[0].headline} </Typography>
+		<Typography variant="h5" gutterBottom>{jobDetails && jobDetails[0].headline} </Typography>
     	<img className="jobDetailsImage" src={jobDetails && jobDetails[0].image}></img>
 		<Typography variant="subtitle1" gutterBottom><strong>About the Wedding</strong><br></br>This event is at {jobDetails && jobDetails[0].venue} on {prettyDate(jobDetails && jobDetails[0].date)}. I am looking for a {jobDetails && jobDetails[0].service} for {jobDetails && jobDetails[0].hours} hours. The pay is ${jobDetails && jobDetails[0].pay}</Typography>
 		{/* <p><strong>Date:</strong> {prettyDate(jobDetails && jobDetails[0].date)} </p>

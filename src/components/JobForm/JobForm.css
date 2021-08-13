@@ -3,9 +3,12 @@
 	width: 90%;
 	max-width: 100%;
 	padding: 25px;
-	margin: 0 auto 20px;
+	margin: auto;
+	margin-top: 13px;
+	margin-bottom: 13px;
+	/* margin: 0 auto 20px; */
 	background-color: #ffffff;
-	border-radius: 3px;
+	border-radius: 5px;
 	box-shadow: 0 1px 2px rgb(0, 0, 0, 0.2);
 }
 
