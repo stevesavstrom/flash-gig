@@ -12,4 +12,21 @@ There are ~100,000 wedding photographers and videographers in the U.S. Most are 
 ## Preview
 ![Screen Shot](public/images/screenshot.gif)
 
+## Technologies Used and Prerequisites
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [Redux-Saga](https://redux-saga.js.org/)
+- [Node.js](https://nodejs.org/en/)
+- [Express](https://expressjs.com/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Postico](https://eggerapps.at/postico/)
+- [Material-UI](https://material-ui.com/)
+- [Google Maps API](https://developers.google.com/maps)
+
+## Installation
+1. Create a SQL database named `wedding` (see `database.sql` for setup instructions.)
+2. Open your text editor and run `npm install` in Terminal.
+3. Run `npm run server` in Terminal.
+4. Run `npm run client` in another Terminal to view React application.
+
 
