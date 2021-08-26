@@ -86,8 +86,9 @@ function JobForm() {
           type="text"
           name="headline"
           value={headline}
+          autocomplete="off"
           required
-          onChange={(event) => setHeadline(event.target.value)}
+          onChange={(event) => setHeadline('Photographer needed! Client wants to add photo to video package!')}
         />
       </div>
 
@@ -96,11 +97,12 @@ function JobForm() {
         <TextField
           className={classes.jobPostInput}
           id="outlined-basic"
-          label="Date"
+          // label="Date"
           variant="outlined"
-          type="text"
+          type="date"
           name="date"
           value={date}
+          autocomplete="off"
           required
           onChange={(event) => setDate(event.target.value)}
         />
@@ -138,8 +140,9 @@ function JobForm() {
             type="text"
             name="hours"
             value={hours}
+            autocomplete="off"
             required
-            onChange={(event) => setHours(event.target.value)}
+            onChange={(event) => setHours('8')}
           />
         </label>
       </div>
@@ -155,8 +158,9 @@ function JobForm() {
             type="text"
             name="pay"
             value={pay}
+            autocomplete="off"
             required
-            onChange={(event) => setPay(event.target.value)}
+            onChange={(event) => setPay('2000')}
           />
         </label>
       </div>
